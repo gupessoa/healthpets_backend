@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'password' => 'required|current_password:api|password_confirmation|min:8'
+            'password' => 'required_with:password_confirmation|same:password_confirmation|min:8'
         ];
     }
 }
