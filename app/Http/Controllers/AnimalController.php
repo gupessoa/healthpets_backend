@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnimalRequest;
 use App\Http\Requests\UpdateAnimalRequest;
 use App\Models\Animal;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AnimalController extends Controller
 {
@@ -15,7 +17,15 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::find(Auth::user()->id);
+        $animals = $user->animals;
+
+        if(empty($animals)){
+            return response()->json([], 200);
+        }
+
+        return response()->json($animals, 200);
+
     }
 
 
