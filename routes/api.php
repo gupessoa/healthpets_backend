@@ -40,3 +40,11 @@ Route::prefix('animal')->group(function(){
     Route::put('/{id}', [AnimalController::class, 'update']);
     Route::delete('/delete', [AnimalController::class, 'destroy']);
 });
+
+Route::prefix('vacina')->group(function(){
+    Route::get('/', [AnimalController::class, 'index']);
+    Route::post('/', [AnimalController::class, 'store']);
+    Route::get('/get/{id}', [AnimalController::class, 'show']);
+    Route::put('/{id}', [AnimalController::class, 'update']);
+    Route::delete('/delete', [AnimalController::class, 'destroy']);
+});
