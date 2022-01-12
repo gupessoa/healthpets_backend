@@ -6,7 +6,9 @@ use App\Http\Requests\AnimalRequest;
 use App\Http\Requests\UpdateAnimalRequest;
 use App\Models\Animal;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class AnimalController extends Controller
 {
@@ -37,7 +39,22 @@ class AnimalController extends Controller
      */
     public function store(AnimalRequest $request)
     {
-        //
+        $name = $request['name'];
+        $birth_date = Carbon::createFromDate($request['birth_date']);
+        $photo = $request['photo'];
+
+        if($birth_date->gt(Carbon::now()) ){
+            return response()->json(['error'=>'The date of birth cannot be greater than todays date.'], 422);
+        }
+
+        $animal = new Animal([
+            'name' => $name,
+            'birth_date' => $birth_date,
+            'photo' => $photo
+        ]);
+
+        $animal->saveOrFail();
+        return response()->json($animal, 200);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +33,10 @@ Route::prefix('auth')->group(function(){
     Route::delete('/delete', [AuthController::class, 'destroy']);
 });
 
+Route::prefix('animal')->group(function(){
+    Route::get('/', [AnimalController::class, 'index']);
+    Route::post('/', [AnimalController::class, 'store']);
+    Route::get('/get/{id}', [AnimalController::class, 'show']);
+    Route::put('/{id}', [AnimalController::class, 'update']);
+    Route::delete('/delete', [AnimalController::class, 'destroy']);
+});
