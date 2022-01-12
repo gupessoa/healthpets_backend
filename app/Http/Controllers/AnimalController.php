@@ -63,9 +63,10 @@ class AnimalController extends Controller
      * @param  \App\Models\Animal  $animal
      * @return \Illuminate\Http\Response
      */
-    public function show(Animal $animal)
+    public function show(int $id)
     {
-        //
+        // TODO implementar a busca apenas nos animais cadastrados por este usuário
+        return response()->json(Animal::findOrFail($id), 200);
     }
 
     /**
@@ -75,9 +76,15 @@ class AnimalController extends Controller
      * @param  \App\Models\Animal  $animal
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAnimalRequest $request, Animal $animal)
+    public function update(AnimalRequest $request, int $id)
     {
-        //
+        $animal = Animal::find($id);
+
+        $animal->name = $request->name;
+        $animal->birth_date = $request->birth_date;
+        $animal->photo = $request->photo;
+
+        return response()->json($animal->update(), 200);
     }
 
     /**
@@ -86,8 +93,10 @@ class AnimalController extends Controller
      * @param  \App\Models\Animal  $animal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Animal $animal)
+    public function destroy(int $id)
     {
-        //
+        $animal = Animal::find($id);
+        $animal->delete();
+        return response()->json(['message' => 'Successfully deleted animal.'], 200);
     }
 }
