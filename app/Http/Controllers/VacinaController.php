@@ -27,10 +27,10 @@ class VacinaController extends Controller
      */
     public function store(VacinaRequest $request)
     {
-        $name = $request['name'];
-        $application_date = $request['application_date'];
-        $manufacture = $request['manufacture'];
-        $batch = $request['batch'];
+        $name = $request->name;
+        $application_date = $request->application_date;
+        $manufacture = $request->manufacture;
+        $batch = $request->batch;
 
         $vacina = new Vacina([
             'name' => $name,
@@ -49,9 +49,10 @@ class VacinaController extends Controller
      * @param  \App\Models\Vacina  $vacina
      * @return \Illuminate\Http\Response
      */
-    public function show(Vacina $vacina)
+    public function show(int $vacina)
     {
-        //
+        //TODO implementar a busca das vacinas apenas para o animal do nested route
+        return response()->json(Vacina::findOrFail($vacina), 200);
     }
 
     /**
@@ -61,9 +62,16 @@ class VacinaController extends Controller
      * @param  \App\Models\Vacina  $vacina
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateVacinaRequest $request, Vacina $vacina)
+    public function update(VacinaRequest $request, int $id)
     {
-        //
+        $vacina = Vacina::find($id);
+
+        $vacina->name = $request->name;
+        $vacina->application_date = $request->application_date;
+        $vacina->manufacture = $request->manufacture;
+        $vacina->batch = $request->batch;
+
+        return response()->json($vacina->update(), 200);
     }
 
     /**
@@ -72,8 +80,10 @@ class VacinaController extends Controller
      * @param  \App\Models\Vacina  $vacina
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vacina $vacina)
+    public function destroy(int $id)
     {
-        //
+        $vacina = Vacina::find($id);
+        $vacina->delete();
+        return response()->json(['message' => 'Successfully deleted vacina.'], 200);
     }
 }
