@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\AuthController;
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,18 +33,5 @@ Route::prefix('auth')->group(function(){
     Route::delete('/delete', [AuthController::class, 'destroy']);
 });
 
-Route::prefix('animal')->group(function(){
-    Route::get('/', [AnimalController::class, 'index']);
-    Route::post('/', [AnimalController::class, 'store']);
-    Route::get('/get/{id}', [AnimalController::class, 'show']);
-    Route::put('/{id}', [AnimalController::class, 'update']);
-    Route::delete('/delete', [AnimalController::class, 'destroy']);
-});
-
-Route::prefix('vacina')->group(function(){
-    Route::get('/', [AnimalController::class, 'index']);
-    Route::post('/', [AnimalController::class, 'store']);
-    Route::get('/get/{id}', [AnimalController::class, 'show']);
-    Route::put('/{id}', [AnimalController::class, 'update']);
-    Route::delete('/delete', [AnimalController::class, 'destroy']);
-});
+Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
+Route::resource('animal.vacina', VacinaController::class, ['except' => ['create','edit']]);
