@@ -28,7 +28,6 @@ class AnimalController extends Controller
         }
 
         return response()->json($animals, 200);
-
     }
 
 
@@ -66,7 +65,6 @@ class AnimalController extends Controller
      */
     public function show(int $id)
     {
-        // TODO implementar a busca apenas nos animais cadastrados por este usuário
         return response()->json(Animal::findOrFail($id), 200);
     }
 
