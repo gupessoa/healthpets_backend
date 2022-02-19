@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VacinaRequest;
 use App\Http\Requests\UpdateVacinaRequest;
+use App\Models\Animal;
 use App\Models\Vacina;
 
 class VacinaController extends Controller
@@ -13,7 +14,7 @@ class VacinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $animal_id)
+    public function index(int $animal, int $animal_id)
     {
         //TODO Ultimo a ser implementado o método index, que traz todas as vacinas
     }
@@ -25,8 +26,9 @@ class VacinaController extends Controller
      * @param  \App\Http\Requests\VacinaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VacinaRequest $request)
-    {
+    public function store(VacinaRequest $request, int $animal)
+    {   $animal = Animal::find($animal);
+
         $name = $request->name;
         $application_date = $request->application_date;
         $manufacture = $request->manufacture;
@@ -49,7 +51,7 @@ class VacinaController extends Controller
      * @param  \App\Models\Vacina  $vacina
      * @return \Illuminate\Http\Response
      */
-    public function show(int $vacina)
+    public function show(int $animal, int $vacina)
     {
         //TODO implementar a busca das vacinas apenas para o animal do nested route
         return response()->json(Vacina::findOrFail($vacina), 200);
@@ -62,7 +64,7 @@ class VacinaController extends Controller
      * @param  \App\Models\Vacina  $vacina
      * @return \Illuminate\Http\Response
      */
-    public function update(VacinaRequest $request, int $id)
+    public function update(VacinaRequest $request, int $animal, int $id)
     {
         $vacina = Vacina::find($id);
 
@@ -80,8 +82,9 @@ class VacinaController extends Controller
      * @param  \App\Models\Vacina  $vacina
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $animal, int $id)
     {
+        $animal = Animal::find();
         $vacina = Vacina::find($id);
         $vacina->delete();
         return response()->json(['message' => 'Successfully deleted vacina.'], 200);

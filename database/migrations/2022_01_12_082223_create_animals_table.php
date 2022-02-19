@@ -13,11 +13,11 @@ class CreateAnimalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('animals', function (Blueprint $table) {
+        Schema::create('animais', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->date('birth_date');
-            $table->string('photo')->nullable();
+            $table->string('nome');
+            $table->date('data_nascimento');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

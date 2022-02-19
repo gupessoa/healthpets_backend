@@ -15,10 +15,12 @@ class CreateVacinasTable extends Migration
     {
         Schema::create('vacinas', function (Blueprint $table) {
             $table->id()->primary();
-            $table->string('name');
-            $table->date('application_date');
-            $table->string('manufacturer')->nullable();
-            $table->string('batch')->nullable();
+            $table->string('nome');
+            $table->date('data_aplicacao');
+            $table->string('fabricante')->nullable();
+            $table->string('lote')->nullable();
+            $table->unsignedBigInteger('id_animal');
+            $table->foreign('id_animal')->onDelete('cascade');
             $table->timestamps();
         });
     }
