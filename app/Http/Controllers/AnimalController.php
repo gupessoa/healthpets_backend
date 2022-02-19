@@ -101,6 +101,11 @@ class AnimalController extends Controller
         return response()->json(['message' => 'Successfully deleted animal.'], 200);
     }
 
+    /**
+     *  create de hash to share the animal with another user
+     * @param int $id_animal
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function shareAnimal(int $id_animal)
     {
         $codigo = Hash::make($id_animal.''.(\Carbon\Carbon::now()));
@@ -114,6 +119,13 @@ class AnimalController extends Controller
         return response()->json(['codigo' => $codigo], 200);
     }
 
+    /**
+     * add the shared animal in the account of the current user
+     *
+     * @param int $id_animal
+     * @param string $codigo
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function saveSharedAnimal(int $id_animal, string $codigo)
     {
         $codigo = DB::table('compartilhamento')->where('codigo', $codigo)->get()->ativo ;
