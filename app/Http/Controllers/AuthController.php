@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use JWTAuth;
 
 class AuthController extends Controller
 {
@@ -25,7 +26,13 @@ class AuthController extends Controller
 
         $user->save();
 
-        return response()->json(['message'=>'User has been registered'], 200);
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        return response()->json([
+            'message'=>'User has been registered',
+            'user' => $user,
+            'token' => $token
+        ], 201);
     }
 
 
@@ -50,7 +57,6 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
 
