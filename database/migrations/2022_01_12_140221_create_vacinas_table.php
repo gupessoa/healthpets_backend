@@ -20,7 +20,7 @@ class CreateVacinasTable extends Migration
             $table->string('fabricante')->nullable();
             $table->string('lote')->nullable();
             $table->unsignedBigInteger('id_animal');
-            $table->foreign('id_animal')->onDelete('cascade');
+            $table->foreign('id_animal')->references('id')->on('aniamis')->onDelete('cascade');
             $table->timestamps();
         });
     }

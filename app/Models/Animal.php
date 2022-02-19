@@ -26,4 +26,9 @@ class Animal extends Model
     {
         return $this->hasMany(Vacina::class, 'animal_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'animal_user', 'id_animal', 'id_user');
+    }
 }

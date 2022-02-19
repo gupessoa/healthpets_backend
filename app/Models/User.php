@@ -52,4 +52,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function animais()
+    {
+        return $this->belongsToMany(Animal::class, 'animal_user', 'id_user', 'id_animal');
+    }
 }
