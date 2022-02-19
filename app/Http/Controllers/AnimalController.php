@@ -8,7 +8,8 @@ use App\Models\Animal;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AnimalController extends Controller
 {
@@ -98,5 +99,31 @@ class AnimalController extends Controller
         $animal = Animal::find($id);
         $animal->delete();
         return response()->json(['message' => 'Successfully deleted animal.'], 200);
+    }
+
+    public function shareAnimal(int $id_animal)
+    {
+        $codigo = Hash::make($id_animal.''.(\Carbon\Carbon::now()));
+        DB::table('compartilhamento')
+            ->insert([
+                'codigo' => $codigo,
+                'validade' => \Carbon\Carbon::now()->addMinutes(60),
+                'ativo' => 's',
+            ]);
+
+        return response()->json(['codigo' => $codigo], 200);
+    }
+
+    public function saveSharedAnimal(int $id_animal, string $codigo)
+    {
+        $codigo = DB::table('compartilhamento')->where('codigo', $codigo)->get()->ativo ;
+        if($codigo['ativo'] == 'n' || \Carbon\Carbon::now()->greaterThan($codigo['created_at'])){
+            return response()->json(['error' => 'Código inválido ou Tempo de compartilhamento expirado.'], 422);
+        }
+        DB::table('compartilhamento')->update(['ativo'=>'n'])->where('codigo', $codigo);
+        $animal = Animal::find($id_animal);
+        $animal->users()->attach(Auth::id(), ['owner' => 'n']);
+
+        return response()->json(['message' => 'Animal compartilhado com sucesso'], 200);
     }
 }
