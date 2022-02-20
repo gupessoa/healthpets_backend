@@ -14,9 +14,10 @@ class VacinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $animal, int $animal_id)
+    public function index(int $animal_id)
     {
-        //TODO Ultimo a ser implementado o método index, que traz todas as vacinas
+        $vacinas = Animal::findOrFail($animal_id)->vacinas()->get();
+        return response()->json(['vacinas' => $vacinas], '200');
     }
 
 
@@ -53,7 +54,7 @@ class VacinaController extends Controller
      */
     public function show(int $id)
     {
-        return response()->json(Vacina::findOrFail($id), 200);
+        return response()->json(Vacina::findOrFail($id), '200');
     }
 
     /**
