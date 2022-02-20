@@ -15,7 +15,8 @@ class RacaController extends Controller
      */
     public function index()
     {
-        //
+        $racas = Raca::all();
+        return response()->json(['racas' => $racas],'200');
     }
 
     /**
@@ -26,7 +27,14 @@ class RacaController extends Controller
      */
     public function store(RacaRequest $request)
     {
-        //
+        $raca = new Raca([
+            'nome' => $request->nome,
+            'descricao' =>$request->descricao
+        ]);
+
+        $raca->saveOrFail();
+
+        return response()->json(['message' => 'Raça adicionada com sucesso!'], '200');
     }
 
     /**
@@ -37,7 +45,8 @@ class RacaController extends Controller
      */
     public function show(int $id)
     {
-        //
+        $raca = Raca::findOrFail($id);
+        return response()->json(['raca' => $raca], '200');
     }
 
     /**
@@ -49,7 +58,13 @@ class RacaController extends Controller
      */
     public function update(RacaRequest $request, int $id)
     {
-        //
+        $raca = Raca::findOrFail($id);
+        $raca->nome = $request->filled('nome') ? $request->nome : $raca->nome;
+        $raca->descricao = $request->filled('descricao') ? $request->descricao : $raca->descricao;
+
+        $raca->updateOrFail();
+
+        return response()->json(['message' => 'Raça atualiza com sucesso'], '200');
     }
 
     /**
@@ -60,6 +75,8 @@ class RacaController extends Controller
      */
     public function destroy(int $id)
     {
-        //
+        $raca = Raca::findOrFail($id);
+        $raca->delete();
+        return response()->json(['message' => 'Raça excluída com sucesso.'], '200');
     }
 }
