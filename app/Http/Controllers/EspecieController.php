@@ -15,7 +15,8 @@ class EspecieController extends Controller
      */
     public function index()
     {
-        //
+        $especies = Especie::all();
+        return response()->json(['especies' => $especies], '200');
     }
 
     /**
@@ -26,40 +27,50 @@ class EspecieController extends Controller
      */
     public function store(EspecieRequest $request)
     {
-        //
+        $especie = new Especie([
+            'descricao' => $request->descricao,
+        ]);
+
+        $especie->saveOrFail();
+        return response()->json($especie, '200');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Especie  $especie
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Especie $especie)
+    public function show(int $id)
     {
-        //
+        $especie = Especie::find($id);
+        return response()->json($especie, '200');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\EspecieRequest  $request
-     * @param  \App\Models\Especie  $especie
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EspecieRequest $request, Especie $especie)
+    public function update(EspecieRequest $request, int $id)
     {
-        //
+        $especie = Especie::find($id);
+        $especie->descricao = $request->descricao;
+        $especie->update();
+        return response()->json($especie, '200');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Especie  $especie
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Especie $especie)
+    public function destroy(int $id)
     {
-        //
+        Especie::find($id)->delete();
+        return response()->json(['message' => 'Successfully deleted Especie.'], '200');
     }
 }

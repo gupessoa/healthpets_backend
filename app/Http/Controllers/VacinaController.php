@@ -48,23 +48,22 @@ class VacinaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vacina  $vacina
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $animal, int $vacina)
+    public function show(int $id)
     {
-        //TODO implementar a busca das vacinas apenas para o animal do nested route
-        return response()->json(Vacina::findOrFail($vacina), 200);
+        return response()->json(Vacina::findOrFail($id), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateVacinaRequest  $request
-     * @param  \App\Models\Vacina  $vacina
+     * @param  \App\Http\Requests\VacinaRequest  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(VacinaRequest $request, int $animal, int $id)
+    public function update(VacinaRequest $request, int $id)
     {
         $vacina = Vacina::find($id);
 
@@ -79,10 +78,10 @@ class VacinaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vacina  $vacina
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $animal, int $id)
+    public function destroy(int $id)
     {
         Vacina::find($id)->delete();
         return response()->json(['message' => 'Successfully deleted vacina.'], 200);
