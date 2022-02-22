@@ -21,17 +21,30 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', function(){
-    return response()->json(['status' => 'Connected'], 200);
+    return response()->json(['status' => 'Online'], 200);
 });
 
+//Public Rotes
 Route::prefix('auth')->group(function(){
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/logout', [AuthController::class, 'logout']);
-    Route::get('/me', [AuthController::class, 'me']);
-    Route::get('/refresh', [AuthController::class, 'refresh']);
-    Route::delete('/delete', [AuthController::class, 'destroy']);
 });
 
-Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
-Route::resource('animal.vacina', VacinaController::class, ['except' => ['create','edit']]);
+//Protected Routes
+Route::group(['middleware' => ['jwt.auth']], function (){
+    //Auth Rotes
+    Route::prefix('auth')->group(function(){
+        Route::get('/logout', [AuthController::class, 'logout']);
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::get('/refresh', [AuthController::class, 'refresh']);
+        Route::delete('/delete', [AuthController::class, 'destroy']);
+    });
+
+    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
+    Route::resource('animal.vacina', VacinaController::class, ['except' => ['create','edit']]);
+    Route::resource('especie', EspecieController::class, ['except' => ['create','edit']]);
+    Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
+
+});
+
+
