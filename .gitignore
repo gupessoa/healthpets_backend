@@ -21,5 +21,6 @@ yarn-error.log
 /logs
 /lscache
 /mail.healthpets.app.br
+/.well-know
 
 /tests
