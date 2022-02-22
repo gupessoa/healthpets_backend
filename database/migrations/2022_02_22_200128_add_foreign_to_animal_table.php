@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRacasTable extends Migration
+class AddForeignToAnimalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateRacasTable extends Migration
      */
     public function up()
     {
-        Schema::create('racas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->string('descricao');
-            $table->unsignedBigInteger('id_especie');
+        Schema::table('animais', function (Blueprint $table) {
             $table->foreign('id_especie')->references('id')->on('especie');
-            $table->timestamps();
+            $table->foreign('id_raca')->references('id')->on('raca');
         });
     }
 
@@ -30,6 +26,9 @@ class CreateRacasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('racas');
+        Schema::table('animais', function (Blueprint $table) {
+            $table->dropForeign(['id_especie']);
+            $table->dropForeign(['id_raca']);
+        });
     }
 }

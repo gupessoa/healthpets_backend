@@ -17,6 +17,8 @@ class CreateAnimalsTable extends Migration
             $table->id();
             $table->string('nome');
             $table->date('data_nascimento');
+            $table->unsignedBigInteger('id_especie');
+            $table->unsignedBigInteger('id_raca');
             $table->string('foto')->nullable();
             $table->timestamps();
         });
