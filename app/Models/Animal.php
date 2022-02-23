@@ -20,6 +20,8 @@ class Animal extends Model
         'name',
         'birth_date',
         'photo',
+        'id_especie',
+        'id_raca'
     ];
 
     public function vacinas()
@@ -30,5 +32,15 @@ class Animal extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'animal_user', 'id_animal', 'id_user');
+    }
+
+    public function especie()
+    {
+        $this->belongsTo(Especie::class, 'id_especie', 'íd');
+    }
+
+    public function raca()
+    {
+        $this->belongsTo(Raca::class, 'id_raca', 'id');
     }
 }
