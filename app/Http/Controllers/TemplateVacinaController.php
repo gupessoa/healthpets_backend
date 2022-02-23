@@ -15,7 +15,7 @@ class TemplateVacinaController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(['templates' => TemplateVacina::all()], '200');
     }
 
     /**
@@ -37,7 +37,7 @@ class TemplateVacinaController extends Controller
      */
     public function show(int $id)
     {
-        //
+        return response(['template' => TemplateVacina::findOrFail($id)], '200');
     }
 
     /**
@@ -60,6 +60,8 @@ class TemplateVacinaController extends Controller
      */
     public function destroy(int $id)
     {
-        //
+        $template = TemplateVacina::findOrFail($id);
+        $template->delete();
+        return response()->json(['message' => 'Template excluido com sucesso'], '200');
     }
 }
