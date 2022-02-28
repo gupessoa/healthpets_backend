@@ -18,7 +18,7 @@ class CreateAnimalUserTable extends Migration
             $table->unsignedBigInteger('id_animal') ;
             $table->unsignedBigInteger('id_user') ;
             $table->char('owner')->default('s');
-            $table->foreign('id_animal')->references('id')->on('animal')->cascadeOnDelete();
+            $table->foreign('id_animal')->references('id')->on('animais')->cascadeOnDelete();
             $table->foreign('id_user')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
