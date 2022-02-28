@@ -18,7 +18,7 @@ class CreateRacasTable extends Migration
             $table->string('nome');
             $table->string('descricao');
             $table->unsignedBigInteger('id_especie');
-            $table->foreign('id_especie')->references('id')->on('especie');
+            $table->foreign('id_especie')->references('id')->on('especies');
             $table->timestamps();
         });
     }
