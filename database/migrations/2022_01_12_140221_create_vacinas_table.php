@@ -14,7 +14,7 @@ class CreateVacinasTable extends Migration
     public function up()
     {
         Schema::create('vacinas', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->string('nome');
             $table->date('data_aplicacao');
             $table->string('fabricante')->nullable();
