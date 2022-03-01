@@ -41,6 +41,7 @@ class AnimalController extends Controller
         $name = $request['name'];
         $birth_date = Carbon::createFromDate($request['birth_date']);
         $photo = $request['photo'];
+        $id_raca = $request['id_raca'];
 
         if($birth_date->gt(Carbon::now()) ){
             return response()->json(['error'=>'The date of birth cannot be greater than todays date.'], 422);
@@ -49,7 +50,8 @@ class AnimalController extends Controller
         $animal = new Animal([
             'name' => $name,
             'birth_date' => $birth_date,
-            'photo' => $photo
+            'photo' => $photo,
+            'id_raca'=> $id_raca
         ]);
 
         $animal->saveOrFail();
@@ -81,6 +83,7 @@ class AnimalController extends Controller
         $animal->name = $request->name;
         $animal->birth_date = $request->birth_date;
         $animal->photo = $request->photo;
+        $animal->id_raca = $request->id_raca;
 
         return response()->json($animal->update(), 200);
     }

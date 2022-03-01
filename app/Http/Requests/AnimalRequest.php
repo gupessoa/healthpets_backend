@@ -26,8 +26,7 @@ class AnimalRequest extends FormRequest
         return [
             'name' => 'required',
             'birth_date' => 'required|date',
-            'photo' => '',
-            'id_especie' => 'required',
+            'photo' => ''
             'id_raca' => 'required',
         ];
     }
