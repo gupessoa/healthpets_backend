@@ -1,23 +1,10 @@
 <?php
 
-namespace Tests\Feature;
+it('has login route', function () {
+    $response = $this->post('/api/auth/login');
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+    //Testando a rota
+    //Teste precisa dar Unauthenticate, pois não é passada nenhum parametro.
+    $response->assertStatus(401);
 
-class LoginTest extends TestCase
-{
-//    public function testRotaLoginFuncionando()
-//    {
-//        $response = $this->get('/api/login');
-//        $response->assertStatus(200);
-//    }
-
-    //Verificando se após as configurações do JWT aind aé permitido uma requisião sem token
-    public function testVerificandoAutorizacaoDeApi()
-    {
-        $response = $this->post('/api/auth/login');
-        $response->assertStatus(401);
-    }
-}
+});

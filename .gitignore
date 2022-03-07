@@ -24,4 +24,5 @@ yarn-error.log
 /mail.healthpets.app.br
 /.well-know
 
+/tests/*
 /tests

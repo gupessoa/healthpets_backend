@@ -1,17 +1,8 @@
 <?php
 
-namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-
-class ApiTest extends TestCase
-{
-    //Teste da Primeira rota/Endpoint da API
-    public function testRotaPrincipal()
-    {
-        $response = $this->get('/');
-        $response->assertStatus(200);
-    }
-}
+it('has api page', function () {
+    //Testando se a APi esta ligada e funcional
+    $response = $this->get('/');
+    //Precisa retornar codigo http 200
+    $response->assertStatus(200);
+});
