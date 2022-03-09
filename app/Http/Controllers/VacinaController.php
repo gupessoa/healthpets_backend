@@ -17,7 +17,7 @@ class VacinaController extends Controller
     public function index(int $animal_id)
     {
         $vacinas = Animal::findOrFail($animal_id)->vacinas()->get();
-        return response()->json(['vacinas' => $vacinas], '200');
+        return response()->json($vacinas, '200');
     }
 
 

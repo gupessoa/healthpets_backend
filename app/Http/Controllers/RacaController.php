@@ -16,7 +16,7 @@ class RacaController extends Controller
     public function index()
     {
         $racas = Raca::all();
-        return response()->json(['racas' => $racas],'200');
+        return response()->json($racas,'200');
     }
 
     /**
