@@ -24,10 +24,10 @@ class VacinaRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'application_date' => 'required|date',
-            'manufacturer' => '',
-            'batch' => ''
+            'nome' => 'required',
+            'data_aplicacao' => 'required|date',
+            'fabricante' => '',
+            'lote' => ''
         ];
     }
 }

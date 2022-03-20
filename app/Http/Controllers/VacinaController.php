@@ -30,16 +30,16 @@ class VacinaController extends Controller
     public function store(VacinaRequest $request, int $animal)
     {   $animal = Animal::find($animal);
 
-        $name = $request->name;
-        $application_date = $request->application_date;
-        $manufacture = $request->manufacture;
-        $batch = $request->batch;
+        $nome = $request->nome;
+        $data_aplicacao = $request->data_aplicacao;
+        $fabricante = $request->fabricante;
+        $lote = $request->lote;
 
         $vacina = new Vacina([
-            'name' => $name,
-            'application_date' => $application_date,
-            'manufacture' => $manufacture,
-            'batch' => $batch,
+            'name' => $nome,
+            'application_date' => $data_aplicacao,
+            'manufacture' => $fabricante,
+            'batch' => $lote,
         ]);
 
         $vacina->saveOrFail();
@@ -68,10 +68,10 @@ class VacinaController extends Controller
     {
         $vacina = Vacina::find($id);
 
-        $vacina->name = $request->name;
-        $vacina->application_date = $request->application_date;
-        $vacina->manufacture = $request->manufacture;
-        $vacina->batch = $request->batch;
+        $vacina->nome = $request->nome;
+        $vacina->data_aplicacao = $request->data_aplicacao;
+        $vacina->fabricante = $request->fabricante;
+        $vacina->lote = $request->lote;
 
         return response()->json($vacina->update(), 200);
     }
