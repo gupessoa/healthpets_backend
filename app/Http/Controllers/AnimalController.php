@@ -41,6 +41,7 @@ class AnimalController extends Controller
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
         $foto = $request['foto'];
+        $id_especie = $request['id_especie'];
         $id_raca = $request['id_raca'];
 
         if($data_nascimento->gt(Carbon::now()) ){
@@ -51,6 +52,7 @@ class AnimalController extends Controller
             'nome' => $nome,
             'data_nascimento' => $data_nascimento,
             'foto' => $foto,
+            'id_especie' => $id_especie,
             'id_raca'=> $id_raca
         ]);
 
@@ -83,6 +85,7 @@ class AnimalController extends Controller
         $animal->nome = $request->nome;
         $animal->data_nascimento = $request->data_nascimento;
         $animal->foto = $request->foto;
+        $animal->id_especie = $request->id_especie;
         $animal->id_raca = $request->id_raca;
 
         return response()->json($animal->update(), 200);

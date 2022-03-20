@@ -20,6 +20,7 @@ class Animal extends Model
         'nome',
         'data_nascimento',
         'foto',
+        'id_especie',
         'id_raca'
     ];
 
