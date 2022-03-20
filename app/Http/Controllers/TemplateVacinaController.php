@@ -26,7 +26,18 @@ class TemplateVacinaController extends Controller
      */
     public function store(TemplateVacinaRequest $request)
     {
-        //
+        $nome=$request->nome;
+        $frequencia=$request->frequencia;
+        $periodo_frequencia=$request->periodo_frequencia;
+
+        $templateVacina = new TemplateVacina([
+            'nome' => $nome,
+            'frequencia' => $frequencia,
+            'periodo_frequencia' => $periodo_frequencia,
+        ]);
+
+        $templateVacina->saveOrFail();
+        return response()->json($templateVacina, 200);
     }
 
     /**
@@ -49,7 +60,13 @@ class TemplateVacinaController extends Controller
      */
     public function update(TemplateVacinaRequest $request, int $id)
     {
-        //
+        $tempalteVacina = TemplateVacina::find($id);
+        $tempalteVacina->nome = $request->nome;
+        $tempalteVacina->data_nascimento = $request->data_nascimento;
+        $tempalteVacina->foto = $request->foto;
+        $tempalteVacina->id_raca = $request->id_raca;
+
+        return response()->json($tempalteVacina->update(), 200);
     }
 
     /**
