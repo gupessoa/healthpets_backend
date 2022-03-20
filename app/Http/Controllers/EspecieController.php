@@ -28,7 +28,7 @@ class EspecieController extends Controller
     public function store(EspecieRequest $request)
     {
         $especie = new Especie([
-            'descricao' => $request->descricao,
+            'nome' => $request->nome,
         ]);
 
         $especie->saveOrFail();
@@ -57,7 +57,7 @@ class EspecieController extends Controller
     public function update(EspecieRequest $request, int $id)
     {
         $especie = Especie::find($id);
-        $especie->descricao = $request->descricao;
+        $especie->nome = $request->nome;
         $especie->update();
         return response()->json($especie, '200');
     }

@@ -24,7 +24,7 @@ class EspecieRequest extends FormRequest
     public function rules()
     {
         return [
-            'descricao' => 'required',
+            'nome' => 'required',
         ];
     }
 }
