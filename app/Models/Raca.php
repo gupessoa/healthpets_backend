@@ -10,10 +10,7 @@ class Raca extends Model
     use HasFactory;
 
     protected $table = 'racas';
-    protected $fillable = [
-        'nome',
-        'descricao'
-    ];
+    protected $fillable = ['nome'];
 
     public function especie()
     {

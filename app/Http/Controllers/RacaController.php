@@ -28,8 +28,7 @@ class RacaController extends Controller
     public function store(RacaRequest $request)
     {
         $raca = new Raca([
-            'nome' => $request->nome,
-            'descricao' =>$request->descricao
+            'nome' => $request->nome
         ]);
 
         $raca->saveOrFail();
@@ -60,7 +59,6 @@ class RacaController extends Controller
     {
         $raca = Raca::findOrFail($id);
         $raca->nome = $request->filled('nome') ? $request->nome : $raca->nome;
-        $raca->descricao = $request->filled('descricao') ? $request->descricao : $raca->descricao;
 
         $raca->updateOrFail();
 

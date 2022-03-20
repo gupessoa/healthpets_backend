@@ -25,7 +25,6 @@ class RacaRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'descricao' => 'required',
             'id_especie' => 'required'
         ];
     }
