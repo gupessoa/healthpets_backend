@@ -24,9 +24,9 @@ class AnimalRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'birth_date' => 'required|date',
-            'photo' => '',
+            'nome' => 'required',
+            'data_nascimento' => 'required|date',
+            'foto' => '',
             'id_raca' => 'required',
         ];
     }
