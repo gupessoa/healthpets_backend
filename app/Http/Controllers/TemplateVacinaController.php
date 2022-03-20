@@ -15,7 +15,7 @@ class TemplateVacinaController extends Controller
      */
     public function index()
     {
-        return response()->json(['templates' => TemplateVacina::all()], '200');
+        return response()->json(TemplateVacina::all(), '200');
     }
 
     /**

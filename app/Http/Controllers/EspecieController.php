@@ -16,7 +16,7 @@ class EspecieController extends Controller
     public function index()
     {
         $especies = Especie::all();
-        return response()->json(['especies' => $especies], '200');
+        return response()->json($especies, '200');
     }
 
     /**
