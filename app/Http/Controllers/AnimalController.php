@@ -20,13 +20,12 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        $animals = User::find(Auth::user()->id)->animais();
-
-        if(empty($animals)){
-            return response()->json([], 200);
+        $animais = User::find(Auth::user()->id)->animais()->get();
+        if(empty($animais)){
+            return response()->json(['message' => 'empty'], 200);
         }
 
-        return response()->json($animals, 200);
+        return response()->json($animais, 200);
     }
 
 
