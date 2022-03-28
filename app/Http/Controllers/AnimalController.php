@@ -6,6 +6,7 @@ use App\Http\Requests\AnimalRequest;
 use App\Http\Requests\UpdateAnimalRequest;
 use App\Models\Animal;
 use App\Models\User;
+use http\Env\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +19,14 @@ class AnimalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, int $id)
     {
 //        $animais = User::find(Auth::user()->id)->animais()->get();
 //        if(empty($animais)){
 //            return response()->json(['message' => 'empty'], 200);
 //        }
+            dd($request);
+            dd('ID:',$id);
 
         return response()->json("Foi", 200);
     }
