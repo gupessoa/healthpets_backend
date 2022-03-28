@@ -14,22 +14,28 @@ use Illuminate\Support\Facades\Request;
 
 class AnimalController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, int $id)
+    public function index()
     {
-//        $animais = User::find(Auth::user()->id)->animais()->get();
-//        if(empty($animais)){
-//            return response()->json(['message' => 'empty'], 200);
-//        }
+        $animais = User::find(Auth::user()->id)->animais()->get();
+        if(empty($animais)){
+            return response()->json(['message' => 'empty'], 200);
+        }
 //            dd($request, 'ID:',$id, );
 //            dd('saindo');
 
 
-        return response()->json(["id" => $id], 200);
+        return response()->json($animais, 200);
     }
 
 
