@@ -19,17 +19,17 @@ class AnimalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, int $id)
     {
 //        $animais = User::find(Auth::user()->id)->animais()->get();
 //        if(empty($animais)){
 //            return response()->json(['message' => 'empty'], 200);
 //        }
-            dd($request);
-            dd('ID:',$id);
-            dd('saindo');
+//            dd($request, 'ID:',$id, );
+//            dd('saindo');
 
-        return response()->json("Foi", 200);
+
+        return response()->json(["id" => $id], 200);
     }
 
 
