@@ -19,7 +19,7 @@ class AnimalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, int $id)
+    public function index(Request $request)
     {
 //        $animais = User::find(Auth::user()->id)->animais()->get();
 //        if(empty($animais)){
