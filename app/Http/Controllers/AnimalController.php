@@ -27,6 +27,7 @@ class AnimalController extends Controller
 //        }
             dd($request);
             dd('ID:',$id);
+            dd('saindo');
 
         return response()->json("Foi", 200);
     }
