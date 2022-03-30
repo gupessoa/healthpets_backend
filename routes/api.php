@@ -51,6 +51,7 @@ Route::prefix('auth')->group(function(){
 Route::resource('animal.vacina', VacinaController::class, ['except' => ['create','edit']]);
 Route::resource('especie', EspecieController::class, ['except' => ['create','edit']]);
 Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
+Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
 
 //Protected Routes
 Route::group(['middleware' => ['jwt.auth']], function (){

@@ -77,4 +77,16 @@ class RacaController extends Controller
         $raca->delete();
         return response()->json(['message' => 'Raça excluída com sucesso.'], '200');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getRacaByEspecie(int $id)
+    {
+        $racas = Raca::where('id_especie', $id)->get();
+        return response()->json(['racas' => $racas], 200 );
+    }
 }
