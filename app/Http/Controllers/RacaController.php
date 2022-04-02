@@ -45,7 +45,7 @@ class RacaController extends Controller
     public function show(int $id)
     {
         $raca = Raca::findOrFail($id);
-        return response()->json(['raca' => $raca], '200');
+        return response()->json($raca, '200');
     }
 
     /**
@@ -87,6 +87,6 @@ class RacaController extends Controller
     public function getRacaByEspecie(int $id)
     {
         $racas = Raca::where('id_especie', $id)->get();
-        return response()->json(['racas' => $racas], 200 );
+        return response()->json($racas, 200 );
     }
 }
