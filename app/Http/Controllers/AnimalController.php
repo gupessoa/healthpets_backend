@@ -52,19 +52,12 @@ class AnimalController extends Controller
            $foto =  $request->file('foto')->store('pets');
         }
 
-//        return response()->json(['foto' => $fotoNome, 'NomeNovo' => $nomeNovo, 'caminho' => $path], 200);
-//        dd($request->file('foto')->getClientOriginalName());
-
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
         $foto = $foto;
         $id_especie = $request['id_especie'];
         $id_raca = $request['id_raca'];
-//
-//        if($data_nascimento->gt(Carbon::now()) ){
-//            return response()->json(['error'=>'The date of birth cannot be greater than todays date.'], 422);
-//        }
-//
+
         $animal = new Animal([
             'nome' => $nome,
             'data_nascimento' => $data_nascimento,
@@ -72,11 +65,11 @@ class AnimalController extends Controller
             'id_especie' => $id_especie,
             'id_raca'=> $id_raca
         ]);
-//
-//        $animal->saveOrFail();
-//
-//        $animal->users()->attach(Auth::id(), ['owner' => 's']);
-//
+
+        $animal->saveOrFail();
+
+        $animal->users()->attach(Auth::id(), ['owner' => 's']);
+
         return response()->json($animal, 200);
 
     }
