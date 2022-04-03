@@ -66,7 +66,11 @@ class AnimalController extends Controller
         ]);
 
         $animal->saveOrFail();
+
+        $animal->users()->attach(Auth::id(), ['owner' => 's']);
+
         return response()->json($animal, 200);
+
     }
 
     /**
