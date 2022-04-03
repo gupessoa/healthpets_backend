@@ -59,7 +59,7 @@ class AnimalController extends Controller
 //            $fotoNome = '0';
 //        }
 
-
+        return response()->json(['foto' => $request->file('foto')->getClientOriginalName()], 200);
         dd($request->file('foto')->getClientOriginalName());
 
 //        $nome = $request['nome'];
