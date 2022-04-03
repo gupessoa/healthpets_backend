@@ -58,6 +58,8 @@ class AnimalController extends Controller
 //        }else{
 //            $fotoNome = '0';
 //        }
+
+
         dd($request->file('foto'));
 
         $nome = $request['nome'];
