@@ -48,16 +48,16 @@ class AnimalController extends Controller
     public function store(AnimalRequest $request)
     {
         $fotoNome = '';
-        if($request->hasFile('foto')){
-           $fotoNome = $request->file('foto')->getClientOriginalName();
-           $fotoNome = pathinfo($fotoNome, PATHINFO_FILENAME);
-
-           $fotoNome = Hash::make($fotoNome.''.time().'.'.$request->file('foto')->getClientOriginalExtension());
-
-            file('foto')->storeAs('public/pets', $fotoNome);
-        }else{
-            $fotoNome = '0';
-        }
+//        if($request->hasFile('foto')){
+//           $fotoNome = $request->file('foto')->getClientOriginalName();
+//           $fotoNome = pathinfo($fotoNome, PATHINFO_FILENAME);
+//
+//           $fotoNome = Hash::make($fotoNome.''.time().'.'.$request->file('foto')->getClientOriginalExtension());
+//
+//            file('foto')->storeAs('public/pets', $fotoNome);
+//        }else{
+//            $fotoNome = '0';
+//        }
         dd($request->file('foto'));
 
         $nome = $request['nome'];
