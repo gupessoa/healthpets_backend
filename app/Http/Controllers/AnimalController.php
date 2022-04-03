@@ -47,46 +47,37 @@ class AnimalController extends Controller
      */
     public function store(AnimalRequest $request)
     {
-        $fotoNome = '';
-        $nomeNovo = '';
-        $path = '';
+        $foto ='';
         if($request->hasFile('foto')){
-           $fotoNome = $request->file('foto')->getClientOriginalName();
-           $fotoNome = pathinfo($fotoNome, PATHINFO_FILENAME);
-//
-           $nomeNovo= Hash::make($fotoNome.''.time().'.'.$request->file('foto')->getClientOriginalExtension());
-//
-            $path = file('foto')->storeAs('public/pets/', $fotoNome);
-//        }else{
-//            $fotoNome = '0';
+           $foto =  $request->file('foto_perfil')->store('pets');
         }
 
-        return response()->json(['foto' => $fotoNome, 'NomeNovo' => $nomeNovo, 'caminho' => $path], 200);
-        dd($request->file('foto')->getClientOriginalName());
+//        return response()->json(['foto' => $fotoNome, 'NomeNovo' => $nomeNovo, 'caminho' => $path], 200);
+//        dd($request->file('foto')->getClientOriginalName());
 
-//        $nome = $request['nome'];
-//        $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
-//        $foto = $fotoNome;
-//        $id_especie = $request['id_especie'];
-//        $id_raca = $request['id_raca'];
+        $nome = $request['nome'];
+        $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
+        $foto = $foto;
+        $id_especie = $request['id_especie'];
+        $id_raca = $request['id_raca'];
 //
 //        if($data_nascimento->gt(Carbon::now()) ){
 //            return response()->json(['error'=>'The date of birth cannot be greater than todays date.'], 422);
 //        }
 //
-//        $animal = new Animal([
-//            'nome' => $nome,
-//            'data_nascimento' => $data_nascimento,
-//            'foto' => $foto,
-//            'id_especie' => $id_especie,
-//            'id_raca'=> $id_raca
-//        ]);
+        $animal = new Animal([
+            'nome' => $nome,
+            'data_nascimento' => $data_nascimento,
+            'foto' => $foto,
+            'id_especie' => $id_especie,
+            'id_raca'=> $id_raca
+        ]);
 //
 //        $animal->saveOrFail();
 //
 //        $animal->users()->attach(Auth::id(), ['owner' => 's']);
 //
-//        return response()->json($animal, 200);
+        return response()->json($animal, 200);
 
     }
 
