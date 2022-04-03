@@ -62,29 +62,29 @@ class AnimalController extends Controller
 
         dd($request->file('foto'));
 
-        $nome = $request['nome'];
-        $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
-        $foto = $fotoNome;
-        $id_especie = $request['id_especie'];
-        $id_raca = $request['id_raca'];
-
-        if($data_nascimento->gt(Carbon::now()) ){
-            return response()->json(['error'=>'The date of birth cannot be greater than todays date.'], 422);
-        }
-
-        $animal = new Animal([
-            'nome' => $nome,
-            'data_nascimento' => $data_nascimento,
-            'foto' => $foto,
-            'id_especie' => $id_especie,
-            'id_raca'=> $id_raca
-        ]);
-
-        $animal->saveOrFail();
-
-        $animal->users()->attach(Auth::id(), ['owner' => 's']);
-
-        return response()->json($animal, 200);
+//        $nome = $request['nome'];
+//        $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
+//        $foto = $fotoNome;
+//        $id_especie = $request['id_especie'];
+//        $id_raca = $request['id_raca'];
+//
+//        if($data_nascimento->gt(Carbon::now()) ){
+//            return response()->json(['error'=>'The date of birth cannot be greater than todays date.'], 422);
+//        }
+//
+//        $animal = new Animal([
+//            'nome' => $nome,
+//            'data_nascimento' => $data_nascimento,
+//            'foto' => $foto,
+//            'id_especie' => $id_especie,
+//            'id_raca'=> $id_raca
+//        ]);
+//
+//        $animal->saveOrFail();
+//
+//        $animal->users()->attach(Auth::id(), ['owner' => 's']);
+//
+//        return response()->json($animal, 200);
 
     }
 
