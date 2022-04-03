@@ -49,7 +49,7 @@ class AnimalController extends Controller
     {
         $foto ='';
         if($request->hasFile('foto')){
-           $foto =  $request->file('foto_perfil')->store('pets');
+           $foto =  $request->file('foto')->store('pets');
         }
 
 //        return response()->json(['foto' => $fotoNome, 'NomeNovo' => $nomeNovo, 'caminho' => $path], 200);
