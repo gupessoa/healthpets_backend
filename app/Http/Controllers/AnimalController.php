@@ -56,7 +56,7 @@ class AnimalController extends Controller
 //
            $nomeNovo= Hash::make($fotoNome.''.time().'.'.$request->file('foto')->getClientOriginalExtension());
 //
-//            $path = file('foto')->storeAs('public/pets', $fotoNome);
+            $path = file('foto')->storeAs('public/pets/', $fotoNome);
 //        }else{
 //            $fotoNome = '0';
         }
