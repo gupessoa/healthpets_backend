@@ -60,7 +60,7 @@ class AnimalController extends Controller
 //        }
 
 
-        dd($request->file('foto'));
+        dd($request->file('foto')->getClientOriginalName());
 
 //        $nome = $request['nome'];
 //        $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
