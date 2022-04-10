@@ -57,7 +57,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['message' => 'Logout realizado com sucesso']);
     }
 
 
@@ -81,7 +81,7 @@ class AuthController extends Controller
     {
         if($id){
             User::find($id)->delete();
-            return response()->json(['message' => 'User successfully deleted']);
+            return response()->json(['message' => 'Usuário deletado com sucesso']);
         }
     }
 
