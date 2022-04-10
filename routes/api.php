@@ -48,7 +48,8 @@ Route::prefix('auth')->group(function(){
     Route::delete('/delete', [AuthController::class, 'destroy']);
 });
 
-Route::resource('animal.vacina', VacinaController::class, ['except' => ['create','edit']]);
+Route::resource('vacina', VacinaController::class, ['except' => ['create','edit', 'index']]);
+Route::post('/vacina/{id}', [VacinaController::class, 'index']);
 Route::resource('especie', EspecieController::class, ['except' => ['create','edit']]);
 Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);

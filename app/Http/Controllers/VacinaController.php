@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VacinaRequest;
-use App\Http\Requests\UpdateVacinaRequest;
+use Illuminate\Support\Facades\Request;
 use App\Models\Animal;
 use App\Models\Vacina;
 
@@ -14,9 +14,10 @@ class VacinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $animal_id)
+    public function index(Request $request, int $id)
     {
-        $vacinas = Animal::findOrFail($animal_id)->vacinas()->get();
+//        dd($id);
+        $vacinas = Animal::findOrFail($id)->vacinas()->get();
         return response()->json($vacinas, '200');
     }
 
@@ -27,20 +28,21 @@ class VacinaController extends Controller
      * @param  \App\Http\Requests\VacinaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VacinaRequest $request, int $animal)
+    public function store(VacinaRequest $request)
     {
 
         $nome = $request->nome;
         $data_aplicacao = $request->data_aplicacao;
         $fabricante = $request->fabricante;
         $lote = $request->lote;
+        $id_animal = $request->id_animal;
 
         $vacina = new Vacina([
             'nome' => $nome,
             'data_aplicacao' => $data_aplicacao,
             'fabricante' => $fabricante,
             'lote' => $lote,
-            'id_animal' => $animal,
+            'id_animal' => $id_animal,
         ]);
 
         $vacina->saveOrFail();
