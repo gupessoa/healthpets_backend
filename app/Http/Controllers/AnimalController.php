@@ -115,7 +115,7 @@ class AnimalController extends Controller
     {
         $animal = Animal::find($id);
         $animal->delete();
-        return response()->json(['message' => 'Successfully deleted animal.'], 200);
+        return response()->json(['message' => 'Animal deletado com sucesso'], 200);
     }
 
     /**

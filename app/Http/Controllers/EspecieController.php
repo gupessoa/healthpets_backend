@@ -71,6 +71,6 @@ class EspecieController extends Controller
     public function destroy(int $id)
     {
         Especie::find($id)->delete();
-        return response()->json(['message' => 'Successfully deleted Especie.'], '200');
+        return response()->json(['message' => 'Espécie deletada com sucesso'], '200');
     }
 }

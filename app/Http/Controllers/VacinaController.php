@@ -86,6 +86,6 @@ class VacinaController extends Controller
     public function destroy(int $id)
     {
         Vacina::find($id)->delete();
-        return response()->json(['message' => 'Successfully deleted vacina.'], 200);
+        return response()->json(['message' => 'Vacina deletada com sucesso'], 200);
     }
 }
