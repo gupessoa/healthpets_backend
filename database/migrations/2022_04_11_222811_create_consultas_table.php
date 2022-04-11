@@ -15,6 +15,12 @@ class CreateConsultasTable extends Migration
     {
         Schema::create('consultas', function (Blueprint $table) {
             $table->id();
+            $table->string('descricao')->nullable();
+            $table->date('data');
+            $table->string('horario')->nullable();
+            $table->unsignedBigInteger('id_animal');
+            $table->foreign('id_animal')->references('id')->on('animais')->onDelete('cascade');
+            $table->unsignedBigInteger('id_local');
             $table->timestamps();
         });
     }

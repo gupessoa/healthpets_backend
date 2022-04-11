@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Consulta extends Model
 {
     use HasFactory;
+
+    protected $table = '';
+
+    protected $fillable =[
+        'descricao',
+        'data',
+        'horario',
+        'id_animal',
+        'id_local',
+    ];
+
+    public function animal()
+    {
+        return $this->belongsTo(Animal::class, 'id_animal', 'id');
+    }
 }
