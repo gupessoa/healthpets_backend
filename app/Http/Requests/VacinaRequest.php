@@ -27,7 +27,8 @@ class VacinaRequest extends FormRequest
             'nome' => 'required',
             'data_aplicacao' => 'required|date',
             'fabricante' => '',
-            'lote' => ''
+            'lote' => '',
+            'id_animal' => 'required'
         ];
     }
 }

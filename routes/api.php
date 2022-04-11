@@ -54,6 +54,8 @@ Route::resource('especie', EspecieController::class, ['except' => ['create','edi
 Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
 
+Route::get('/agenda', [AgendaController::class, 'getPorAno']);
+
 //Protected Routes
 Route::group(['middleware' => ['jwt.auth']], function (){
     //Auth Rotes
