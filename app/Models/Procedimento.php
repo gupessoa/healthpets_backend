@@ -18,4 +18,9 @@ class Procedimento extends Model
         'id_animal',
         'id_local',
     ];
+
+    public function local()
+    {
+        return $this->hasOne(Local::class, 'id_local', 'id');
+    }
 }

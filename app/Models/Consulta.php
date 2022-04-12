@@ -23,4 +23,9 @@ class Consulta extends Model
     {
         return $this->belongsTo(Animal::class, 'id_animal', 'id');
     }
+
+    public function local()
+    {
+        return $this->hasOne(Local::class, 'id_local', 'id');
+    }
 }

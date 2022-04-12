@@ -21,4 +21,14 @@ class Local extends Model
         'uf',
         'pais',
     ];
+
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class, 'id_local', 'id');
+    }
+
+    public function procedimentos()
+    {
+        return $this->hasMany(Procedimento::class, 'id_local', 'id');
+    }
 }
