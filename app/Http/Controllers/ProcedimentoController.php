@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProcedimentoRequest;
-use App\Http\Requests\UpdateProcedimentoRequest;
 use App\Models\Procedimento;
+use App\Models\User;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 class ProcedimentoController extends Controller
 {
@@ -15,7 +19,33 @@ class ProcedimentoController extends Controller
      */
     public function index()
     {
-        //todo é possivel criar uma rota exclusiva para pegar o sprocedimentos por animal e outra rota por usuario, e ai precisa criar os métodos correspondentes.
+        //Não teremos a rota para trazer todos os procedimentos de todos os animais do sistema
+    }
+
+    public function getByUser()
+    {
+        $date = Carbon::now()->subYear(1)->toDateString();
+        $user = User::find(Auth::id());
+        $animais_id = $user->animais()->pluck('animais.id');
+
+        $procedimentos =  DB::table('procedimentos')
+                            ->where('data','>=',$date)
+                            ->whereIn('id_animal', $animais_id)
+                            ->get();
+        return response()->json($procedimentos, '200');
+    }
+
+    public function getByAnimal(int $id)
+    {
+        $date = Carbon::now()->subYear(1)->toDateString();
+        $user = User::find(Auth::id());
+        $animais_id = $user->animais()->pluck('animais.id');
+
+        $procedimentos =  DB::table('procedimentos')
+            ->where('data','>=',$date)
+            ->whereIn('id_animal', $id)
+            ->get();
+        return response()->json($procedimentos, '200');
     }
 
     /**
@@ -65,7 +95,6 @@ class ProcedimentoController extends Controller
      */
     public function update(ProcedimentoRequest $request, int $id)
     {
-        //todo atualizar o mer e der adc o campo descricao-
         $procedimento = Procedimento::find($id);
 
         $procedimento->descricao = $request->descricao ;

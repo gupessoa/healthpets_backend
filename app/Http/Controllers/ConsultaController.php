@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ConsultaRequest;
 use App\Http\Requests\UpdateConsultaRequest;
 use App\Models\Consulta;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 
 class ConsultaController extends Controller
@@ -16,7 +19,18 @@ class ConsultaController extends Controller
      */
     public function index(Request $request, int $id)
     {
+        //pegar as consultas por animais
         $consultas = Consulta::where('id_animal', '=', $id);
+        return response()->json($consultas, '200');
+    }
+
+    public function getByUser(int $id)
+    {
+        $user = User::find(Auth::id());
+        $animais_id = $user->animais()->pluck('animais.id');
+        $consultas = DB::table('consultas')
+                        ->whereIn('id_animal', $animais_id)
+                        ->get();
         return response()->json($consultas, '200');
     }
 

@@ -14,7 +14,7 @@ class VacinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, int $id)
+    public function index(int $id)
     {
         $vacinas = Animal::findOrFail($id)->vacinas()->get();
         return response()->json($vacinas, '200');

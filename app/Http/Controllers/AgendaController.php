@@ -20,6 +20,6 @@ class AgendaController extends Controller
 
         $vacinas = DB::table('vacinas')->where('data_aplicacao', '>=', $date)->whereIn('id_animal', $animais_id)->get();
 
-        dd($vacinas);
+        return response()->json($vacinas, 200);
     }
 }
