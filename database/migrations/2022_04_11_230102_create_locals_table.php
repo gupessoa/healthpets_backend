@@ -13,7 +13,7 @@ class CreateLocalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locals', function (Blueprint $table) {
+        Schema::create('locais', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->string('cep');
