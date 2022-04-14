@@ -47,14 +47,14 @@ class AnimalController extends Controller
      */
     public function store(AnimalRequest $request)
     {
-        $foto ='';
-        if($request->hasFile('foto')){
-           $foto =  $request->file('foto')->store('pets');
-        }
+//        $foto ='';
+//        if($request->hasFile('foto')){
+//           $foto =  $request->file('foto')->store('pets');
+//        }
 
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
-        $foto = $foto;
+        $foto = $request->foto;
         $id_especie = $request['id_especie'];
         $id_raca = $request['id_raca'];
 
