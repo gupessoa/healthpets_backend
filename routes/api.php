@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consulta;
+use App\Models\Procedimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,8 +50,13 @@ Route::prefix('auth')->group(function(){
     Route::delete('/delete', [AuthController::class, 'destroy']);
 });
 
+Route::resource('template', TemplateVacinaController::class, ['except' => ['create','edit']]);
+Route::resource('consulta', ConsultaController::class, ['except' => ['create','edit', 'index']]);
+Route::resource('local', LocalController::class, ['except' => ['create','edit']]);
+Route::resource('procedimento', ProcedimentoController::class, ['except' => ['create','edit']]);
 Route::resource('vacina', VacinaController::class, ['except' => ['create','edit', 'index']]);
 Route::post('/vacina/{id}', [VacinaController::class, 'index']);
+Route::post('/consulta/{id}', [ConsultaController::class, 'index']);
 Route::resource('especie', EspecieController::class, ['except' => ['create','edit']]);
 Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
