@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EspecieRequest;
-use App\Http\Requests\UpdateEspecieRequest;
 use App\Models\Especie;
 
 class EspecieController extends Controller

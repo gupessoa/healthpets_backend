@@ -43,4 +43,9 @@ class Animal extends Model
     {
         $this->belongsTo(Raca::class, 'id_raca', 'id');
     }
+
+    public function diarios()
+    {
+        return $this->hasMany(Diario::class, 'id_animal', 'id');
+    }
 }
