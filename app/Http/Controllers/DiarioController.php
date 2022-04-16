@@ -35,7 +35,18 @@ class DiarioController extends Controller
      */
     public function store(DiarioRequest $request)
     {
-        //
+        $diario = new Diario([
+            'peso' =>  $request->peso,
+            'humor' =>  $request->humor,
+            'descricao' =>  $request->descricao,
+            'data' =>  $request->data,
+            'foto' =>  $request->foto,
+            'id_animal' => $request->id_animal,
+        ]);
+
+        $diario->saveOrFail();
+
+        return response()->json($diario, 200);
     }
 
     /**
@@ -58,7 +69,20 @@ class DiarioController extends Controller
      */
     public function update(DiarioRequest $request, int $id)
     {
-        //
+        $diario = Diario::find($id);
+
+
+        $diario->peso =  $request->peso;
+        $diario->humor =  $request->humor;
+        $diario->descricao =  $request->descricao;
+        $diario->data =  $request->data;
+        //se o input foto existe e ele esta preenchido
+        $diario->foto =  $request->has('foto') && $request->filled('foto') ? $request->foto : $diario->foto;
+        $diario->id_animal = $request->id_animal;
+
+        $diario->saveOrFail();
+
+        return response()->json($diario, 200);
     }
 
     /**
