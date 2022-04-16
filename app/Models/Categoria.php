@@ -14,4 +14,9 @@ class Categoria extends Model
     protected $fillable =[
       'nome'
     ];
+
+    public function dispesas()
+    {
+        return $this->hasMany(Despesa::class, 'id_catgoria', 'id');
+    }
 }
