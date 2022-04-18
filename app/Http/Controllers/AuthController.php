@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 
@@ -77,10 +78,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy()
     {
-        if($id){
-            User::find($id)->delete();
+        if(Auth::user()->id){
+            User::find(Auth::user()->id)->delete();
             return response()->json(['message' => 'Usuário deletado com sucesso']);
         }
     }

@@ -12,10 +12,11 @@ class Despesa extends Model
     protected $table = 'despesas';
 
     protected $fillable = [
-      'descricao',
-      'valor',
-      'data',
-      'id_categoria',
+        'descricao',
+        'valor',
+        'data',
+        'dividido_por',
+        'id_categoria',
     ];
 
     public function categoria()
@@ -26,6 +27,6 @@ class Despesa extends Model
     //relacionamento muitos para muitos com animais
     public function animais()
     {
-        
+        return $this->belongsToMany(Animal::class, 'despesas_animais', 'id_despesa', 'id_animal');
     }
 }

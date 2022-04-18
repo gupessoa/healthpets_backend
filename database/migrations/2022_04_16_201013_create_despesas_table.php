@@ -18,6 +18,7 @@ class CreateDespesasTable extends Migration
             $table->string('descricao')->nullable();
             $table->double('valor');
             $table->date('data');
+            $table->json('dividido_por');
             $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('cascade');
             $table->timestamps();
         });

@@ -6,6 +6,8 @@ use App\Http\Requests\DespesaRequest;
 use App\Http\Requests\UpdateDespesaRequest;
 use App\Models\Animal;
 use App\Models\Despesa;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DespesaController extends Controller
 {
@@ -24,7 +26,24 @@ class DespesaController extends Controller
         $animal = Animal::find($id);
         $despesas = $animal->despesas();
 
-        return response($despesas, 200);
+        return response()->json($despesas, 200);
+    }
+
+    public function getByUser(int $id)
+    {
+        $animais = User::find(Auth::user()->id)->animais()->get();
+        $despesas = array();
+
+        if (!empty($animais)){
+            for ($i = 0; $i < sizeof($animais); $i++){
+                $animal_despesas = $animais[$i]->despesas;
+                foreach ($animal_despesas as $despesa){
+                    array_push($despesas, $despesa);
+                }
+            }
+        }
+
+        return response()->json($despesas, 200);
     }
 
     /**
@@ -67,6 +86,8 @@ class DespesaController extends Controller
      */
     public function show(int $id)
     {
+        $animal = Animal::find($id);
+        dd($animal->despesas());
         //todo implementar o retorno de despesa de cada animal,
         //todo aqui é interessante retornar os campos total_animal e porcentagem da compra da tabela pivot
     }

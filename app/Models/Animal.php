@@ -48,4 +48,9 @@ class Animal extends Model
     {
         return $this->hasMany(Diario::class, 'id_animal', 'id');
     }
+
+    public function despesas()
+    {
+        return $this->belongsToMany(Despesa::class, 'despesas_animais', 'id_animal', 'id_despesa');
+    }
 }

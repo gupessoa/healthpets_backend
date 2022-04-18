@@ -13,7 +13,7 @@ class DespesaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class DespesaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descricao' => '',
+            'valor' => 'required|double',
+            'data' => 'required|date',
+            'divido_por' => 'json',
+            'id_categoria' => 'required|int',
         ];
     }
 }
