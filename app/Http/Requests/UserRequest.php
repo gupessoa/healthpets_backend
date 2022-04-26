@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'nome' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required_with:password_confirmation|same:password_confirmation|min:8',
             'password_confirmation' => 'required|min:8',
@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'É preciso informar um nome para se cadastrar',
+            'nome.required' => 'É preciso informar um nome para se cadastrar',
             'email.required' => 'É preciso informar um e-mail para efetuar o cadastro',
             'email.email' => 'É preciso informar um e-mail válido para efetuar o cadastro',
             'email.unique' => 'E-mail ja cadastrado no sistema',
