@@ -20,6 +20,7 @@ class CreateDiariosTable extends Migration
             $table->string('descricao');
             $table->string('data');
             $table->string('foto')->nullable();
+            $table->unsignedBigInteger('id_animal');
             $table->foreign('id_animal')->references('id')->on('animais')->onDelete('cascade');
             $table->timestamps();
         });
