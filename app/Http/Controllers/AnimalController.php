@@ -24,15 +24,12 @@ class AnimalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $animais = User::find(Auth::user()->id)->animais()->get();
+        $animais = User::find($id)->animais()->get();
         if(empty($animais)){
-            return response()->json(['message' => 'empty'], 200);
+            return response()->json([], 200);
         }
-//            dd($request, 'ID:',$id, );
-//            dd('saindo');
-
 
         return response()->json($animais, 200);
     }

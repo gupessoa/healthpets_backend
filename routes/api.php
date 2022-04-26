@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::group(['middleware' => ['jwt.auth']], function (){
-    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
+    Route::resource('animal', AnimalController::class, ['except' => ['create','edit', 'index']]);
 //    //Auth Rotes
 //    Route::prefix('auth')->group(function(){
 //        Route::get('/logout', [AuthController::class, 'logout']);
@@ -61,8 +61,8 @@ Route::resource('especie', EspecieController::class, ['except' => ['create','edi
 Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
 Route::resource('diario', DiarioController::class, ['except' => ['create','edit', 'index']]);
 Route::post('/diario/{id}', [RacaController::class, 'getAllByAnimal']);
-//Route::get('/diario/{id}/animal', [RacaController::class, 'getAllByAnimal']);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
+Route::get('/animal/{id}/user', [AnimalController::class, 'index']);
 
 Route::get('/agenda', [AgendaController::class, 'getPorAno']);
 

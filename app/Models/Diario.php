@@ -15,8 +15,7 @@ class Diario extends Model
         'peso',
         'humor',
         'descricao',
-        'data',
-        'foto',
+        'data', //pegar a data do dia que esta sendo cadastrado.
         'id_animal'
     ];
 
