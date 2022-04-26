@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AnimalRequest;
+use App\Http\Requests\UpdateAnimalRequest;
 use App\Models\Animal;
 use App\Models\User;
 use Illuminate\Support\Carbon;
@@ -43,6 +44,11 @@ class AnimalController extends Controller
      */
     public function store(AnimalRequest $request)
     {
+//        $foto ='';
+//        if($request->hasFile('foto')){
+//           $foto =  $request->file('foto')->store('pets');
+//        }
+
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
         $foto = $request->foto;
@@ -136,7 +142,6 @@ class AnimalController extends Controller
      */
     public function saveSharedAnimal(int $id_animal, string $codigo)
     {
-        //TODO criar tabela de compartilhamento
         $codigo = DB::table('compartilhamento')->where('codigo', $codigo)->get()->ativo ;
         if($codigo['ativo'] == 'n' || \Carbon\Carbon::now()->greaterThan($codigo['created_at'])){
             return response()->json(['error' => 'Código inválido ou Tempo de compartilhamento expirado.'], 422);
