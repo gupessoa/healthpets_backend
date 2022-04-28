@@ -48,6 +48,10 @@ Route::prefix('auth')->group(function(){
     Route::get('/me', [AuthController::class, 'me']);
     Route::get('/refresh', [AuthController::class, 'refresh']);
     Route::delete('/delete', [AuthController::class, 'destroy']);
+    Route::post('/forgot', [AuthController::class, 'forgotPassword']);
+    Route::post('/reset', [AuthController::class, 'reset']);
+    Route::post('/email/verification-notification', [AuthController::class, 'sendVerificationEmail']);
+    Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify']);
 });
 
 Route::resource('template', TemplateVacinaController::class, ['except' => ['create','edit']]);
