@@ -37,6 +37,7 @@ class AuthController extends Controller
 
         event(new Registered($user));
 
+
         $token = $user->createToken('myapptoken')->plainTextToken;
 
         return response()->json([
