@@ -51,7 +51,7 @@ Route::prefix('auth')->group(function(){
     Route::post('/forgot', [AuthController::class, 'forgotPassword']);
     Route::post('/reset', [AuthController::class, 'reset']);
     Route::post('/email/verification-notification', [AuthController::class, 'sendVerificationEmail']);
-    Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify']);
+    Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
 });
 
 Route::resource('template', TemplateVacinaController::class, ['except' => ['create','edit']]);
