@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ class AuthController extends Controller
         ]);
 
         $user->save();
+
+        event(new Registered($user));
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
