@@ -34,9 +34,8 @@ class AuthController extends Controller
         ]);
 
         $user->save();
-
+        //enviando email de verification
         event(new Registered($user));
-
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
