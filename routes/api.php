@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['jwt.auth']], function (){
     Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
-    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
 //    //Auth Rotes
 //    Route::prefix('auth')->group(function(){
 //        Route::get('/logout', [AuthController::class, 'logout']);

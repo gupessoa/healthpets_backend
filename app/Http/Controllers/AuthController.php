@@ -51,7 +51,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        return response()->json(auth()->user(), auth()->user()->animais()->count());
+        return response()->json(['user' => auth()->user(), 'animais' => auth()->user()->animais()->count()], 200);
     }
 
 
