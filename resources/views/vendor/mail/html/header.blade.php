@@ -5,7 +5,7 @@
 <img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo">
 @else
         <img src=<?php echo $message->embed(asset("images/logo_health_pets.png")) ?> class="logo" alt="Logo Healthpets">
-        <p>{{ asset("images/logo_health_pets.png") }}</p>
+        <p>Aqui esta a aimagem asset("images/logo_health_pets.png")</p>
 @endif
 </a>
 </td>
