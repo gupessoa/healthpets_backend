@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\DeviceToken;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\Verified;
@@ -54,6 +55,13 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'E-mail ou senha inválidos!'], 401);
         }
+
+        $device_token = request(['device_token'])['device_token'];
+//        dd($device_token);
+//        dd(request(['device_token'])['device_token']);
+
+        $this->saveTokenDevice(auth()->id(), $device_token);
+        //verificar se esta funcionando pra gravar os tokens do celular. primeiro no loca, depois subir
 
         return $this->respondWithToken($token);
     }
@@ -179,6 +187,15 @@ class AuthController extends Controller
             User::find(Auth::user()->id)->delete();
             return response()->json(['message' => 'Usuário deletado com sucesso']);
         }
+    }
+
+    private function saveTokenDevice(int $id, String $token)
+    {
+        $token_device = new DeviceToken([
+            'token_device' => $token,
+            'id_user' => $id,
+        ]);
+        User::find($id)->tokenDevices()->save($token_device);
     }
 
 

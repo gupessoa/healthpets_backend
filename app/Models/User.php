@@ -58,4 +58,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->belongsToMany(Animal::class, 'animal_user', 'id_user', 'id_animal');
     }
+
+    public function tokenDevices()
+    {
+        return $this->hasMany(DeviceToken::class, 'id_user', 'id');
+    }
 }

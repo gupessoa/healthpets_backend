@@ -32,6 +32,6 @@ class VerifyEmail extends Mailable
     {
         return $this
             ->subject("Email Verification")
-            ->markdown('emails.verify');
+            ->markdown('vendor.notifications.email');
     }
 }
