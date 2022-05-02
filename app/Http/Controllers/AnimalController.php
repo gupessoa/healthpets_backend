@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnimalController extends Controller
 {
@@ -49,7 +50,7 @@ class AnimalController extends Controller
         if($request->hasFile('foto')){
            $foto =  $request->file('foto')->store('public/pets');
         }
-        dd(public_path($foto));
+        dd(Storage::url(public_path($foto)));
 
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
@@ -69,7 +70,7 @@ class AnimalController extends Controller
 
         $animal->users()->attach(Auth::id(), ['owner' => 's']);
 
-        return response()->json([''=>$animal, 'foto'=>public_path($foto)], 200);
+        return response()->json([''=>$animal, 'foto'=>Storage::url(public_path($foto))], 200);
 
     }
 
