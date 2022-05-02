@@ -50,7 +50,7 @@ class AnimalController extends Controller
         if($request->hasFile('foto')){
            $foto =  $request->file('foto')->store('public/pets');
         }
-        dd(Storage::url(public_path($foto)));
+       // dd(Storage::url(public_path($foto)));
 
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
