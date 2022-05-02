@@ -44,11 +44,12 @@ class AnimalController extends Controller
      */
     public function store(AnimalRequest $request)
     {
-        dd($request->all(), $request->allFiles());
-//        $foto ='';
-//        if($request->hasFile('foto')){
-//           $foto =  $request->file('foto')->store('pets');
-//        }
+//        dd($request->all(), $request->allFiles());
+        $foto ='';
+        if($request->hasFile('foto')){
+           $foto =  $request->file('foto')->store('public/pets');
+        }
+        dd(public_path($foto));
 
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
@@ -68,7 +69,7 @@ class AnimalController extends Controller
 
         $animal->users()->attach(Auth::id(), ['owner' => 's']);
 
-        return response()->json($animal, 200);
+        return response()->json([''=>$animal, 'foto'=>public_path($foto)], 200);
 
     }
 
