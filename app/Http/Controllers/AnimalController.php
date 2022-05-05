@@ -48,13 +48,14 @@ class AnimalController extends Controller
 //        dd($request->all(), $request->allFiles());
         $foto ='';
         if($request->hasFile('foto')){
-           $foto =  $request->file('foto')->store('public/pets');
+           $foto =  $request->file('foto')->store('pets', 'public');
         }
-        dd(Storage::url(public_path($foto)));
+        //disponibilizar aqui somente o nome da imagem e criar um método no flutter para acessara a url e fazer o
+        // download da imagem, através do controller do FilesController, metodo getFile
 
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
-        $foto = $request->foto;
+        $foto = explode('/', $foto)[1];
         $id_especie = $request['id_especie'];
         $id_raca = $request['id_raca'];
 
@@ -72,6 +73,12 @@ class AnimalController extends Controller
 
         return response()->json([''=>$animal, 'foto'=>Storage::url(public_path($foto))], 200);
 
+    }
+
+    public function foto(int $id)
+    {
+        $animal = Animal::find($id);
+        return FilesController::getFile($animal->foto);
     }
 
     /**

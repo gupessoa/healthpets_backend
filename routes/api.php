@@ -74,4 +74,11 @@ Route::group(['middleware' => ['jwt.auth']], function (){
 
 });
 
+Route::get('/animal/foto/{id}', [AnimalController::class, 'foto']);
+
+Route::get('get/{filename}', [FilesController::class, 'getfile']);
+//Route::get('file/{filename}', ['middleware' => ['signedurl'], function ($filename) {
+//    return Image::make(storage_path('app/public/'.$filename))->response();
+//}]);
+
 

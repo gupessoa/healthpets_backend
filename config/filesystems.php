@@ -42,6 +42,20 @@ return [
             'visibility' => 'public',
         ],
 
+        'public_pets' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/pets'),
+            'url' => env('APP_URL').'/pets',
+            'visibility' => 'public',
+        ],
+
+        'root_public' => [
+            'driver' => 'local',
+            'root' => public_path('/'),
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -68,6 +82,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('pets') => storage_path('app/pets'),
     ],
 
 ];
