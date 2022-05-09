@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AnimalRequest;
-use App\Http\Requests\UpdateAnimalRequest;
 use App\Models\Animal;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
@@ -78,8 +77,8 @@ class AnimalController extends Controller
     public function foto(Request $request)
     {
 //        $animal = Animal::find($id);
-        $animal = Animal::find($request->id);
-        return FilesController::getFile($animal->foto);
+//        $animal = Animal::find($request->id);
+//        return FilesController::getFile($animal->foto);
     }
 
     /**
