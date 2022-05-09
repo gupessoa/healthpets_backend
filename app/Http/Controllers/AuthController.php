@@ -55,7 +55,7 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'E-mail ou senha inválidos!'], 401);
         }
-
+//        dd(request());
         $device_token = request(['device_token'])['device_token'];
 //        dd($device_token);
 //        dd(request(['device_token'])['device_token']);

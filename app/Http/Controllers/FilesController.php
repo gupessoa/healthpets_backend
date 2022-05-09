@@ -13,6 +13,6 @@ class FilesController extends Controller
     public static function getFile($filename)
     {
         $file=Storage::disk('public_pets')->get($filename);
-        return response($file, 200)->header('Content-Type', 'image/jpg');
+        return response($file, 200)->header('Content-Type', 'image');
     }
 }

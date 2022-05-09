@@ -49,13 +49,15 @@ class AnimalController extends Controller
         $foto ='';
         if($request->hasFile('foto')){
            $foto =  $request->file('foto')->store('pets', 'public');
+        }else{
+            $foto = 'default.png';
         }
         //disponibilizar aqui somente o nome da imagem e criar um método no flutter para acessara a url e fazer o
         // download da imagem, através do controller do FilesController, metodo getFile
 
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
-        $foto = explode('/', $foto)[1];
+        $foto = $foto != 'default.png' ? explode('/', $foto)[1] : $foto;
         $id_especie = $request['id_especie'];
         $id_raca = $request['id_raca'];
 
