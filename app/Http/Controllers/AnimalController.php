@@ -49,12 +49,12 @@ class AnimalController extends Controller
         if($request->hasFile('foto')){
            $foto =  $request->file('foto')->store('pets', 'public');
         }else{
-            $foto = 'default.png';
+            $foto = 'pets/default.png';
         }
 
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
-        $foto = $foto != 'pets/default.png' ? explode('/', $foto)[1] : $foto;
+        $foto = explode('/', $foto)[1];
         $id_especie = $request['id_especie'];
         $id_raca = $request['id_raca'];
 
