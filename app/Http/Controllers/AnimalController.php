@@ -44,7 +44,6 @@ class AnimalController extends Controller
      */
     public function store(AnimalRequest $request)
     {
-//        dd($request->all(), $request->allFiles());
         $foto ='';
         if($request->hasFile('foto')){
            $foto =  $request->file('foto')->store('pets', 'public');
@@ -76,10 +75,8 @@ class AnimalController extends Controller
 
     public function foto(Request $request)
     {
-//        $animal = Animal::find($id);
         $animal = Animal::find($request->id);
         return FilesController::getFile($animal->foto);
-//        dd($request);
     }
 
     /**
