@@ -79,6 +79,7 @@ class AnimalController extends Controller
 //        $animal = Animal::find($id);
 //        $animal = Animal::find($request->id);
 //        return FilesController::getFile($animal->foto);
+        dd($request);
     }
 
     /**
