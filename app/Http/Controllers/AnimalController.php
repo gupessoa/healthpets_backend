@@ -76,7 +76,7 @@ class AnimalController extends Controller
     public function foto(Request $request)
     {
         $animal = Animal::find($request->id);
-        return FilesController::getFile($animal->foto);
+        return response()->download(FilesController::getFile($animal->foto));
     }
 
     /**
