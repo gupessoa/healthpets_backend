@@ -51,6 +51,7 @@ class AnimalController extends Controller
             $foto = 'pets/default.png';
         }
 
+
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
         $foto = explode('/', $foto)[1];
