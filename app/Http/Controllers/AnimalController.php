@@ -95,11 +95,20 @@ class AnimalController extends Controller
      */
     public function update(AnimalRequest $request, int $id)
     {
+        $foto = '';
         $animal = Animal::find($id);
 
         $animal->nome = $request->nome;
         $animal->data_nascimento = $request->data_nascimento;
-        $animal->foto = $request->foto;
+
+        if($request->hasFile('foto')){
+            $foto =  explode('/', $request->file('foto')->store('pets', 'public'))[1];
+            if(Storage::exists($animal->foto)){
+                Storage::delete($animal->foto);
+            }
+        }
+
+        $animal->foto = $foto;
         $animal->id_especie = $request->id_especie;
         $animal->id_raca = $request->id_raca;
 
