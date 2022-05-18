@@ -73,6 +73,7 @@ Route::group(['middleware' => ['jwt.auth']], function (){
     //Auth Rotes
 
 });
+//teste
 
 //Route::post('/animal/foto/', [AnimalController::class, 'foto']);
 
