@@ -49,7 +49,7 @@ Route::prefix('auth')->group(function(){
     Route::get('/refresh', [AuthController::class, 'refresh']);
     Route::delete('/delete', [AuthController::class, 'destroy']);
     Route::post('/forgot', [AuthController::class, 'forgotPassword']);
-    Route::post('/reset', [AuthController::class, 'reset']);
+    Route::post('/reset', [AuthController::class, 'reset'])->name('password.reset');
     Route::post('/email/verification-notification', [AuthController::class, 'sendVerificationEmail']);
     Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
 });

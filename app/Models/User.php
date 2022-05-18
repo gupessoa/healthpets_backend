@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+//use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -62,5 +65,13 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function tokenDevices()
     {
         return $this->hasMany(DeviceToken::class, 'id_user', 'id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $url = 'https://healtpets.app.br/api/auth/reset?token=' . $token;
+
+        $this->notify(new ResetPasswordNotification($url));
+
     }
 }
