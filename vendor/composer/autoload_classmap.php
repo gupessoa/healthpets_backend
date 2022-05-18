@@ -18,6 +18,7 @@ return array(
     'App\\Http\\Controllers\\DeviceTokenController' => $baseDir . '/app/Http/Controllers/DeviceTokenController.php',
     'App\\Http\\Controllers\\DiarioController' => $baseDir . '/app/Http/Controllers/DiarioController.php',
     'App\\Http\\Controllers\\EspecieController' => $baseDir . '/app/Http/Controllers/EspecieController.php',
+    'App\\Http\\Controllers\\FilesController' => $baseDir . '/app/Http/Controllers/FilesController.php',
     'App\\Http\\Controllers\\LocalController' => $baseDir . '/app/Http/Controllers/LocalController.php',
     'App\\Http\\Controllers\\ProcedimentoController' => $baseDir . '/app/Http/Controllers/ProcedimentoController.php',
     'App\\Http\\Controllers\\RacaController' => $baseDir . '/app/Http/Controllers/RacaController.php',

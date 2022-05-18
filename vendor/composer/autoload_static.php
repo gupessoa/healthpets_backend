@@ -598,6 +598,7 @@ class ComposerStaticInitee435cbdebbaeed16481685f430ea229
         'App\\Http\\Controllers\\DeviceTokenController' => __DIR__ . '/../..' . '/app/Http/Controllers/DeviceTokenController.php',
         'App\\Http\\Controllers\\DiarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/DiarioController.php',
         'App\\Http\\Controllers\\EspecieController' => __DIR__ . '/../..' . '/app/Http/Controllers/EspecieController.php',
+        'App\\Http\\Controllers\\FilesController' => __DIR__ . '/../..' . '/app/Http/Controllers/FilesController.php',
         'App\\Http\\Controllers\\LocalController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalController.php',
         'App\\Http\\Controllers\\ProcedimentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcedimentoController.php',
         'App\\Http\\Controllers\\RacaController' => __DIR__ . '/../..' . '/app/Http/Controllers/RacaController.php',
