@@ -22,3 +22,5 @@ jobs:
             **/node_modules/**
             **/vendor/**
             **/github/**
+            **/.env*
+          server-dir: public_html/
