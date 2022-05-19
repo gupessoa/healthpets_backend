@@ -22,4 +22,4 @@ jobs:
             **/node_modules/**
             **/vendor/**
             **/github/**
-            **/.env
+            **/.env*
