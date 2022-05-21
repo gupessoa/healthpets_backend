@@ -27,6 +27,7 @@ class DiarioRequest extends FormRequest
             'peso' =>  '',
             'humor' =>  '',
             'descricao' =>  'required',
+            'titulo' =>  'required',
             'data' =>  'required|date',
             'foto' =>  '',
             'id_animal' => 'required',

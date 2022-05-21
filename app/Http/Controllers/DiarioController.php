@@ -39,6 +39,7 @@ class DiarioController extends Controller
             'peso' =>  $request->peso,
             'humor' =>  $request->humor,
             'descricao' =>  $request->descricao,
+            'titulo' =>  $request->titulo,
             'data' =>  $request->data,
             'id_animal' => $request->id_animal,
         ]);
@@ -74,6 +75,7 @@ class DiarioController extends Controller
         $diario->peso =  $request->peso;
         $diario->humor =  $request->humor;
         $diario->descricao =  $request->descricao;
+        $diario->titulo = $request->titulo;
         $diario->data =  $request->data;
         $diario->id_animal = $request->id_animal;
 
