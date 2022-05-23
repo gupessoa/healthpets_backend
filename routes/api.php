@@ -24,12 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['jwt.auth']], function (){
 //    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
-    Route::prefix('animal')->group(function(){
-        Route::get('/', [AnimalController::class, 'index']);
-        Route::get('/{id}', [AnimalController::class, 'show']);
-        Route::post('/update/{id}', [AnimalController::class, 'update']);
-        Route::delete('/{id}', [AnimalController::class, 'delete']);
-    });
+
 //    //Auth Rotes
 //    Route::prefix('auth')->group(function(){
 //        Route::get('/logout', [AuthController::class, 'logout']);
@@ -37,6 +32,13 @@ Route::group(['middleware' => ['jwt.auth']], function (){
 //        Route::get('/refresh', [AuthController::class, 'refresh']);
 //        Route::delete('/delete', [AuthController::class, 'destroy']);
 //    });
+});
+
+Route::prefix('animal')->group(function(){
+    Route::get('/', [AnimalController::class, 'index']);
+    Route::get('/{id}', [AnimalController::class, 'show']);
+    Route::post('/update/{id}', [AnimalController::class, 'update']);
+    Route::delete('/{id}', [AnimalController::class, 'delete']);
 });
 
 Route::get('/', function(){
