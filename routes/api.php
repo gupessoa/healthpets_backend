@@ -23,7 +23,13 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::group(['middleware' => ['jwt.auth']], function (){
-    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
+//    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
+    Route::prefix('animal')->group(function(){
+        Route::get('/', [AnimalController::class, 'index']);
+        Route::get('/{id}', [AnimalController::class, 'show']);
+        Route::put('/{id}', [AnimalController::class, 'update']);
+        Route::delete('/{id}', [AnimalController::class, 'delete']);
+    });
 //    //Auth Rotes
 //    Route::prefix('auth')->group(function(){
 //        Route::get('/logout', [AuthController::class, 'logout']);
