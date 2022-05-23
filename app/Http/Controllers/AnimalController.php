@@ -89,7 +89,7 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAnimalRequest  $request
+     * @param  \App\Http\Requests\AnimalRequest  $request
      * @param  \App\Models\Animal  $animal
      * @return \Illuminate\Http\Response
      */
