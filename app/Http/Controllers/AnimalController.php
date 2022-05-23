@@ -112,7 +112,7 @@ class AnimalController extends Controller
         $animal->id_especie = $request->id_especie;
         $animal->id_raca = $request->id_raca;
 
-        return response()->json($animal->update(), 200);
+        return response()->json($animal->save(), 200);
     }
 
     /**
