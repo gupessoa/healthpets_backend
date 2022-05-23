@@ -27,7 +27,7 @@ Route::group(['middleware' => ['jwt.auth']], function (){
     Route::prefix('animal')->group(function(){
         Route::get('/', [AnimalController::class, 'index']);
         Route::get('/{id}', [AnimalController::class, 'show']);
-        Route::put('/{id}/id', [AnimalController::class, 'update']);
+        Route::put('/update/{id}', [AnimalController::class, 'update']);
         Route::delete('/{id}', [AnimalController::class, 'delete']);
     });
 //    //Auth Rotes
