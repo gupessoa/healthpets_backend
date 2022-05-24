@@ -38,7 +38,7 @@ Route::prefix('animal')->group(function(){
     Route::get('/', [AnimalController::class, 'index']);
     Route::get('/{id}', [AnimalController::class, 'show']);
     Route::post('/', [AnimalController::class, 'store']);
-    Route::post('/update/{id}', [AnimalController::class, 'update']);
+    Route::put('/update/{id}', [AnimalController::class, 'update']);
     Route::delete('/{id}', [AnimalController::class, 'delete']);
 });
 
