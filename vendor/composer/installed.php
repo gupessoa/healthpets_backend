@@ -5,11 +5,20 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ce7a4a7322189ddbbd5cdb570ab10df5e4f089b2',
+        'reference' => '21fb769f4562c0ff3e5ba935076142ae21222c0d',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
+        'bepsvpt/secure-headers' => array(
+            'pretty_version' => '7.2.0',
+            'version' => '7.2.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../bepsvpt/secure-headers',
+            'aliases' => array(),
+            'reference' => 'e02d80065aae06a66220693e9c321787657fb20b',
+            'dev_requirement' => false,
+        ),
         'brick/math' => array(
             'pretty_version' => '0.9.3',
             'version' => '0.9.3.0',
@@ -409,7 +418,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ce7a4a7322189ddbbd5cdb570ab10df5e4f089b2',
+            'reference' => '21fb769f4562c0ff3e5ba935076142ae21222c0d',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -874,8 +883,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(
