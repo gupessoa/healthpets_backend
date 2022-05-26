@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::group(['middleware' => ['jwt.auth']], function (){
-//    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
+Route::group(['middleware' => ['jwt.auth', 'api']], function (){
+    Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
 
 //    //Auth Rotes
 //    Route::prefix('auth')->group(function(){
@@ -33,14 +33,14 @@ Route::group(['middleware' => ['jwt.auth']], function (){
 //        Route::delete('/delete', [AuthController::class, 'destroy']);
 //    });
 });
-
+/*
 Route::prefix('animal')->group(function(){
     Route::get('/', [AnimalController::class, 'index']);
     Route::get('/{id}', [AnimalController::class, 'show']);
     Route::post('/', [AnimalController::class, 'store']);
     Route::put('/update/{id}', [AnimalController::class, 'update']);
     Route::delete('/{id}', [AnimalController::class, 'delete']);
-});
+});*/
 
 Route::get('/', function(){
     return response()->json(['status' => 'Online'], 200);
