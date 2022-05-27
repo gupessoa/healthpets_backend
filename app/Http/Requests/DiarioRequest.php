@@ -29,7 +29,6 @@ class DiarioRequest extends FormRequest
             'descricao' =>  'required',
             'titulo' =>  'required',
             'data' =>  'required|date',
-            'foto' =>  '',
             'id_animal' => 'required',
         ];
     }
