@@ -56,6 +56,7 @@ return array(
     'App\\Models\\Local' => $baseDir . '/app/Models/Local.php',
     'App\\Models\\Procedimento' => $baseDir . '/app/Models/Procedimento.php',
     'App\\Models\\Raca' => $baseDir . '/app/Models/Raca.php',
+    'App\\Models\\Subcategoria' => $baseDir . '/app/Models/Subcategoria.php',
     'App\\Models\\TemplateVacina' => $baseDir . '/app/Models/TemplateVacina.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Vacina' => $baseDir . '/app/Models/Vacina.php',
