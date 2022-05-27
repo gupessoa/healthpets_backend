@@ -18,6 +18,11 @@ class SubcategoriaController extends Controller
         return response()->json(Subcategoria::all(), 200);
     }
 
+    public function getByCategoria(int $id)
+    {
+        return response()->json(Subcategoria::where('id_categoria', $id)->get(), 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
