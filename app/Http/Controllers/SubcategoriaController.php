@@ -15,7 +15,7 @@ class SubcategoriaController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Subcategoria::all(), 200);
     }
 
     /**
@@ -26,40 +26,43 @@ class SubcategoriaController extends Controller
      */
     public function store(SubcategoriaRequest $request)
     {
-        //
+        $subcategoria = new Subcategoria(['nome' => $request->nome]);
+        return response()->json($subcategoria->saveOrFail(), 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subcategoria  $subcategoria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Subcategoria $subcategoria)
+    public function show(int $id)
     {
-        //
+        return response()->json(Subcategoria::find($id), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSubcategoriaRequest  $request
+     * @param  int $id
      * @param  \App\Models\Subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSubcategoriaRequest $request, Subcategoria $subcategoria)
+    public function update(SubcategoriaRequest $request, int $id)
     {
-        //
+        $subcategoria = Subcategoria::find($id);
+        $subcategoria->nome = $request->nome;
+        return response()->json($subcategoria->save(), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Subcategoria  $subcategoria
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategoria $subcategoria)
+    public function destroy(int $id)
     {
-        //
+        return response()->json(Subcategoria::find($id)->delete(), 200);
     }
 }
