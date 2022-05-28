@@ -70,13 +70,14 @@ Route::resource('procedimento', ProcedimentoController::class, ['except' => ['cr
 Route::resource('vacina', VacinaController::class, ['except' => ['create','edit', 'index']]);
 Route::resource('categoria', CategoriaController::class, ['except' => ['create','edit']]);
 Route::resource('subcategoria', SubcategoriaController::class, ['except' => ['create','edit']]);
-Route::resource('info', InfoController::class, ['except' => ['create','edit']]);
+Route::resource('info', InfoController::class, ['except' => ['create','edit', 'index']]);
 Route::post('/vacina/{id}', [VacinaController::class, 'index']);
 Route::post('/consulta/{id}', [ConsultaController::class, 'index']);
 Route::resource('especie', EspecieController::class, ['except' => ['create','edit']]);
 Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
 Route::resource('diario', DiarioController::class, ['except' => ['create','edit', 'index']]);
 Route::post('/diario/{id}', [DiarioController::class, 'getAllByAnimal']);
+Route::post('/info/{id}', [InfoController::class, 'getByAnimal']);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
 //Route::get('/animal/{id}/user', [AnimalController::class, 'index']);
 Route::get('/agenda', [AgendaController::class, 'getPorAno']);
