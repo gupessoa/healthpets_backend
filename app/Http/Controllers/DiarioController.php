@@ -20,6 +20,7 @@ class DiarioController extends Controller
     /**
      * Display a listing of the resource by animal.
      *
+     * * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function getAllByAnimal(int $id)
