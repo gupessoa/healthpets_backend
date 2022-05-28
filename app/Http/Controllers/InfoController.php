@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Models\Info;
+use Illuminate\Http\Request;
 
 class InfoController extends Controller
 {
@@ -60,7 +61,7 @@ class InfoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\InfoRequest  $request
+     * @param  \App\Http\Requests\UpdateInfoRequest  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -76,7 +77,9 @@ class InfoController extends Controller
         $info->valor=$request->valor;
         $info->id_animal =$request->id_animal;
 
-        return response()->json($info->save(), 200);
+        $info->save();
+
+        return response()->json($info, 200);
     }
 
     /**
