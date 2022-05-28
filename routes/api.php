@@ -70,6 +70,7 @@ Route::resource('procedimento', ProcedimentoController::class, ['except' => ['cr
 Route::resource('vacina', VacinaController::class, ['except' => ['create','edit', 'index']]);
 Route::resource('categoria', CategoriaController::class, ['except' => ['create','edit']]);
 Route::resource('subcategoria', SubcategoriaController::class, ['except' => ['create','edit']]);
+Route::resource('info', InfoController::class, ['except' => ['create','edit']]);
 Route::post('/vacina/{id}', [VacinaController::class, 'index']);
 Route::post('/consulta/{id}', [ConsultaController::class, 'index']);
 Route::resource('especie', EspecieController::class, ['except' => ['create','edit']]);
