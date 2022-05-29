@@ -70,6 +70,15 @@ class AnimalController extends Controller
 
         $animal->users()->attach(Auth::id(), ['owner' => 's']);
 
+        $info = [
+            'greeting' => 'Hi '.auth()->user()->nome.',',
+            'body' => 'Este é um teste para saber como esta o email',
+            'thanks' => 'Thank you this is from codeanddeploy.com',
+            'actionText' => 'View Project',
+            'actionURL' => url('/'),
+            'id' => 57
+        ];
+
         return response()->json([''=>$animal, 'foto'=>Storage::url(public_path($foto))], 200);
 
     }
