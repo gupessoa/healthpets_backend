@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnimalRequest;
 use App\Models\Animal;
 use App\Models\User;
+use App\Notifications\PetAddEmailNotification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -51,10 +53,8 @@ class AnimalController extends Controller
             $foto = 'pets/default.png';
         }
 
-
         $nome = $request['nome'];
         $data_nascimento = Carbon::createFromDate($request['data_nascimento']);
-        $foto = explode('/', $foto)[1];
         $id_especie = $request['id_especie'];
         $id_raca = $request['id_raca'];
 
@@ -69,15 +69,18 @@ class AnimalController extends Controller
         $animal->saveOrFail();
 
         $animal->users()->attach(Auth::id(), ['owner' => 's']);
+        $user = auth()->user();
 
         $info = [
-            'greeting' => 'Hi '.auth()->user()->nome.',',
+            'greeting' => 'Hi '.$user->nome.',',
             'body' => 'Este é um teste para saber como esta o email',
             'thanks' => 'Thank you this is from codeanddeploy.com',
             'actionText' => 'View Project',
             'actionURL' => url('/'),
             'id' => 57
         ];
+
+        Notification::send($user, new PetAddEmailNotification($info));
 
         return response()->json([''=>$animal, 'foto'=>Storage::url(public_path($foto))], 200);
 
