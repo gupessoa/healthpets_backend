@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['jwt.auth', 'api']], function (){
     Route::resource('animal', AnimalController::class, ['except' => ['create','edit']]);
+    Route::prefix('animal')->group(function() {
+        Route::post('/foto', [AnimalController::class, 'update_foto']);
+    });
 
 //    //Auth Rotes
 //    Route::prefix('auth')->group(function(){

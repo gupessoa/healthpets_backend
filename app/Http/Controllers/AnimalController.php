@@ -165,4 +165,18 @@ class AnimalController extends Controller
 
         return response()->json(['message' => 'Animal compartilhado com sucesso'], 200);
     }
+
+    public function update_foto(Request $request ){
+        $animal = Animal::find($request->id);
+
+        $foto ='';
+        if($request->hasFile('foto')){
+            $foto =  $request->file('foto')->store('pets', 'public');
+        }
+
+        $animal->foto = $foto;
+
+        return response()->json($animal->save(), 200);
+
+    }
 }
