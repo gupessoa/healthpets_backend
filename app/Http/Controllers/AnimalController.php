@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AnimalRequest;
 use App\Models\Animal;
+use App\Models\TemplateVacina;
 use App\Models\User;
 use App\Notifications\PetAddEmailNotification;
 use Illuminate\Support\Carbon;
@@ -70,13 +71,42 @@ class AnimalController extends Controller
 
         $animal->users()->attach(Auth::id(), ['owner' => 's']);
         $user = auth()->user();
+        $template_vacina = TemplateVacina::where('id', '=', $id_especie)->get()->all();
+        $vacinas = json_decode($template_vacina[0]['nome'])->nome;
+        $frequencia = json_decode($template_vacina[0]['frequencia'])->frequencia;
+        $periodo = json_decode($template_vacina[0]['periodo_frequencia'])->periodo;
+
+//        dd($vacinas, $frequencia, $periodo);
+        $table = '';
+
+        for($i = 0; $i < count($vacinas); $i++){
+            $table .= '<td>'.$vacinas[$i].'</td>'
+                    .'<td>'.$frequencia[$i].'</td>'
+                    .'<td>'.$periodo[$i].'</td>';
+        }
 
         $info = [
-            'greeting' => 'Hi '.$user->nome.',',
-            'body' => 'Este é um teste para saber como esta o email',
-            'thanks' => 'Thank you this is from codeanddeploy.com',
-            'actionText' => 'View Project',
-            'actionURL' => url('/'),
+            'greeting' => 'Olá '.$user->nome.',',
+            'body' => 'Obrigado por cadastrar o '.$nome.' no HealthPets. <br /> Ficamos Felizes em poder ajudar.<br /> '.
+            'Segue uma lista das vacinas mais comuns aplicadas a seu animal: <br />'.
+            '<table class="demo">
+                <thead>
+                <tr>
+                    <th>Nome Vacina</th>
+                    <th>Frequência</th>
+                    <th>Periodo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>'.
+                 $table
+                .'</tr>
+                </tbody>
+            </table>
+',
+            'thanks' => 'Obrigado por escolher o HealthPets. Cadastre novas e as antigas vacinas do seu Pet.',
+            'actionText' => 'Cadastrar Vacinas',
+            'actionURL' => url('/home'),
             'id' => 57
         ];
 

@@ -16,5 +16,4 @@ class TemplateVacina extends Model
         'frequencia',
         'periodo_frequencia',
     ];
-
 }
