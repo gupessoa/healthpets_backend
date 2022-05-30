@@ -82,7 +82,7 @@ class AnimalController extends Controller
 
         Notification::send($user, new PetAddEmailNotification($info));
 
-        return response()->json([''=>$animal, 'foto'=>Storage::url(public_path($foto))], 200);
+        return response()->json([$animal], 200);
 
     }
 
