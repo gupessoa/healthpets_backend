@@ -80,30 +80,30 @@ class AnimalController extends Controller
         $table = '';
 
         for($i = 0; $i < count($vacinas); $i++){
-            $table .= '<td>'.$vacinas[$i].'</td>'
-                    .'<td>'.$frequencia[$i].'</td>'
-                    .'<td>'.$periodo[$i].'</td>';
+            $table .= ' A vacina '.$vacinas[$i].' precisa ser aplicada de '.$frequencia[$i]
+                    .' em '.$frequencia[$i].' '
+                    .$periodo[$i].'.';
         }
 
         $info = [
             'greeting' => 'Olá '.$user->nome.',',
-            'body' => 'Obrigado por cadastrar o '.$nome.' no HealthPets. <br /> Ficamos Felizes em poder ajudar.<br /> '.
-            'Segue uma lista das vacinas mais comuns aplicadas a seu animal: <br />'.
-            '<table class="demo">
-                <thead>
-                <tr>
-                    <th>Nome Vacina</th>
-                    <th>Frequência</th>
-                    <th>Periodo</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>'.
-                 $table
-                .'</tr>
-                </tbody>
-            </table>
-',
+            'body' => 'Obrigado por cadastrar o '.$nome.' no HealthPets. Ficamos Felizes em poder ajudar'.
+            'Segue uma lista das vacinas mais comuns aplicadas a seu animal: '.$table
+//            '<table class="demo">
+//                <thead>
+//                <tr>
+//                    <th>Nome Vacina</th>
+//                    <th>Frequência</th>
+//                    <th>Periodo</th>
+//                </tr>
+//                </thead>
+//                <tbody>
+//                <tr>'.
+//                 $table
+//                .'</tr>
+//                </tbody>
+//            </table>
+,
             'thanks' => 'Obrigado por escolher o HealthPets. Cadastre novas e as antigas vacinas do seu Pet.',
             'actionText' => 'Cadastrar Vacinas',
             'actionURL' => url('/home'),
