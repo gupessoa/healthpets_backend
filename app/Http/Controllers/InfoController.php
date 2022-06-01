@@ -20,7 +20,7 @@ class InfoController extends Controller
         //
     }
 
-    public function getByAnimal(int $id)
+    public function getByAnimal($id)
     {
         return response()->json(Info::where('id_animal', $id)->get(), 200);
     }
@@ -103,5 +103,7 @@ class InfoController extends Controller
         $animal = $request->id_animal;
 
         $dados = Info::where('id_animal', '=', $animal)->where('categoria', '=', $categoria)->where('subcategoria', '=', $subcategoria);
+
+        return response()->json($dados, 200);
     }
 }
