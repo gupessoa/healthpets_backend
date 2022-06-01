@@ -96,7 +96,7 @@ class InfoController extends Controller
         return response()->json(['message' => 'informação deletada com sucesso']);
     }
 
-    public function listarInfos(Request $request)
+    public function listarInfosSaude(Request $request)
     {
         $categoria = 6;//id saude
         $subcategoria = $request->sucategoria;

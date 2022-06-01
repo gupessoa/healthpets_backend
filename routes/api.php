@@ -82,6 +82,7 @@ Route::resource('raca', RacaController::class, ['except' => ['create','edit']]);
 Route::resource('diario', DiarioController::class, ['except' => ['create','edit', 'index']]);
 Route::post('/diario/{id}', [DiarioController::class, 'getAllByAnimal']);
 Route::post('/info/{id}', [InfoController::class, 'getByAnimal']);
+Route::post('/info/saude/', [InfoController::class, 'listarInfosSaude']);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
 //Route::get('/animal/{id}/user', [AnimalController::class, 'index']);
 Route::get('/agenda', [AgendaController::class, 'getPorAno']);
