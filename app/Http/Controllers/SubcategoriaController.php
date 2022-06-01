@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SubcategoriaRequest;
 use App\Http\Requests\UpdateSubcategoriaRequest;
 use App\Models\Subcategoria;
+use Illuminate\Support\Facades\Request;
 
 class SubcategoriaController extends Controller
 {

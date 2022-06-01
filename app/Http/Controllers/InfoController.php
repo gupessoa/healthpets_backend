@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Models\Info;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class InfoController extends Controller
 {
@@ -93,5 +94,14 @@ class InfoController extends Controller
         $info = Info::find($id);
         $info->delete();
         return response()->json(['message' => 'informação deletada com sucesso']);
+    }
+
+    public function listarInfos(Request $request)
+    {
+        $categoria = 6;//id saude
+        $subcategoria = $request->sucategoria;
+        $animal = $request->id_animal;
+
+        $dados = Info::where('id_animal', '=', $animal)->where('categoria', '=', $categoria)->where('subcategoria', '=', $subcategoria);
     }
 }
