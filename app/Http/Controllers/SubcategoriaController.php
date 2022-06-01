@@ -20,7 +20,7 @@ class SubcategoriaController extends Controller
 
     public function getByCategoria(int $id)
     {
-        return response()->json(Subcategoria::where('id_categoria', $id)->get(), 200);
+        return response()->json(Subcategoria::where('id_categoria', '=',$id)->get(), 200);
     }
 
     /**
@@ -70,4 +70,5 @@ class SubcategoriaController extends Controller
     {
         return response()->json(Subcategoria::find($id)->delete(), 200);
     }
+
 }
