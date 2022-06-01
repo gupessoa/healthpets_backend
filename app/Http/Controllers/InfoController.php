@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Models\Info;
-//use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class InfoController extends Controller
 {
@@ -99,10 +98,9 @@ class InfoController extends Controller
     public function listarInfosSaude(Request $request)
     {
         $categoria = 6;//id saude
-        $subcategoria = $request->sucategoria;
+        $subcategoria = $request->subcategoria;
         $animal = $request->id_animal;
-
-        $dados = Info::where('id_animal', '=', $animal)->where('categoria', '=', $categoria)->where('subcategoria', '=', $subcategoria);
+        $dados = Info::where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->where('id_subcategoria', '=', $subcategoria)->get();
 
         return response()->json($dados, 200);
     }
