@@ -25,7 +25,7 @@ class PushNotification extends Controller
         $link = '';
         $serverKey = 'AAAABpoJZdI:APA91bHb0W4JQ3eQX5OklXpITZF0M_QGRF5IgW5ZT8ilYqpVvgLtulwuRVFnG2tSQ6WZXqKPOACrDY2EVpbFkSi_vC8jH-uoMzC8O5tfHDopPyV7T0RF9M6xcKK4pxziqWtPt-NX_9Mw';
         $data = array(
-//            "registration_ids" => array($dados['device_key']),
+            "registration_ids" => array($dados['device_key']),
             "notification" => [
                 "title" => $dados['title'],
                 "body" => $dados['body'],
