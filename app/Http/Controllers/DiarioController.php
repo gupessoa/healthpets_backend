@@ -93,7 +93,7 @@ class DiarioController extends Controller
      */
     public function destroy(int $id)
     {
-        Diario::find($id);
+        Diario::find($id)->delete();
         return response()->json(['message' => 'Diario deletado com sucesso'], '200');
     }
 }
