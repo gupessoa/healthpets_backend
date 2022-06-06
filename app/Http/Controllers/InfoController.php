@@ -35,12 +35,16 @@ class InfoController extends Controller
         $info = new Info([
             'data'=>$request->data,
             'descricao'=>$request->descricao,
+            'adicionar_lembrete' => $request->adicionar_lembrete,
             'id_categoria'=>$request->id_categoria,
             'id_subcategoria'=>$request->id_subcategoria,
             'local'=>$request->local,
             'valor'=>$request->valor,
+            'hora'=>$request->hora,
             'id_animal'=>$request->id_animal,
         ]);
+
+
 
         $info->saveOrFail();
 
@@ -75,6 +79,7 @@ class InfoController extends Controller
         $info->id_subcategoria=$request->id_subcategoria;
         $info->local=$request->local;
         $info->valor=$request->valor;
+        $info->hora=$request->hora;
         $info->id_animal =$request->id_animal;
 
         $info->save();

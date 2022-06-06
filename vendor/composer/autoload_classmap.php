@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\NoticaApp' => $baseDir . '/app/Console/Commands/NoticaApp.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AgendaController' => $baseDir . '/app/Http/Controllers/AgendaController.php',
@@ -22,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\InfoController' => $baseDir . '/app/Http/Controllers/InfoController.php',
     'App\\Http\\Controllers\\LocalController' => $baseDir . '/app/Http/Controllers/LocalController.php',
     'App\\Http\\Controllers\\ProcedimentoController' => $baseDir . '/app/Http/Controllers/ProcedimentoController.php',
+    'App\\Http\\Controllers\\PushNotification' => $baseDir . '/app/Http/Controllers/PushNotification.php',
     'App\\Http\\Controllers\\RacaController' => $baseDir . '/app/Http/Controllers/RacaController.php',
     'App\\Http\\Controllers\\SubcategoriaController' => $baseDir . '/app/Http/Controllers/SubcategoriaController.php',
     'App\\Http\\Controllers\\TemplateVacinaController' => $baseDir . '/app/Http/Controllers/TemplateVacinaController.php',
@@ -47,6 +49,7 @@ return array(
     'App\\Http\\Requests\\RacaRequest' => $baseDir . '/app/Http/Requests/RacaRequest.php',
     'App\\Http\\Requests\\SubcategoriaRequest' => $baseDir . '/app/Http/Requests/SubcategoriaRequest.php',
     'App\\Http\\Requests\\TemplateVacinaRequest' => $baseDir . '/app/Http/Requests/TemplateVacinaRequest.php',
+    'App\\Http\\Requests\\UpdateInfoRequest' => $baseDir . '/app/Http/Requests/UpdateInfoRequest.php',
     'App\\Http\\Requests\\UserRequest' => $baseDir . '/app/Http/Requests/UserRequest.php',
     'App\\Http\\Requests\\VacinaRequest' => $baseDir . '/app/Http/Requests/VacinaRequest.php',
     'App\\Mail\\VerifyEmail' => $baseDir . '/app/Mail/VerifyEmail.php',
@@ -65,6 +68,7 @@ return array(
     'App\\Models\\TemplateVacina' => $baseDir . '/app/Models/TemplateVacina.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Vacina' => $baseDir . '/app/Models/Vacina.php',
+    'App\\Notifications\\PetAddEmailNotification' => $baseDir . '/app/Notifications/PetAddEmailNotification.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
