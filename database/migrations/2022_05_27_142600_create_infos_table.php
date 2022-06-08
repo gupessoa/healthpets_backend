@@ -24,7 +24,7 @@ class CreateInfosTable extends Migration
             $table->foreign('id_subcategoria')->references('id')->on('subcategorias');
             $table->string('local')->nullable();
             $table->double('valor')->nullable();
-            $table->time('hora');
+            $table->time('hora')->nullable();
             $table->unsignedBigInteger('id_animal');
             $table->foreign('id_animal')->references('id')->on('animais');
             $table->timestamps();
