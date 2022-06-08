@@ -15,7 +15,7 @@ class CreateLembreteTable extends Migration
     {
         Schema::create('lembrete', function (Blueprint $table) {
             $table->id();
-            $table->String('titulos');
+            $table->String('titulo');
             $table->date('data');
             $table->string('descricao');
             $table->time('hora');

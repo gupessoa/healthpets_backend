@@ -7,10 +7,7 @@ use Illuminate\Http\Request;
 
 class LembreteController extends Controller
 {
-    //precia de método para adicionar
-    //precisa de métodfo para fazer update
     //método para retornar todos de um usuario
-    //metod para retornar um apenas
     /**
      * Display a listing of the resource.
      *
@@ -29,40 +26,60 @@ class LembreteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lembrete = new Lembrete([
+            'titulo' => $request->titulo,
+            'data' => $request->data,
+            'descricao' => $request->descricao,
+            'hora' => $request->hora,
+            ]
+        );
+
+        $lembrete->saveOrFail();
+
+        return response()->json($lembrete, 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lembrete  $lembrete
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Lembrete $lembrete)
+    public function show(int  $id)
     {
-        //
+        return response()->json(Lembrete::find($id), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lembrete  $lembrete
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lembrete $lembrete)
+    public function update(Request $request, int  $id)
     {
-        //
+        $lembrete = Lembrete::find($id);
+
+        $lembrete->titulo = $request->titulo;
+        $lembrete->data =$request->data;
+        $lembrete->descricao =$request->descricao;
+        $lembrete->hora =$request->hora;
+
+        return response()->json($lembrete->save(), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lembrete  $lembrete
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lembrete $lembrete)
+    public function destroy(int $id)
     {
-        //
+        $lembrete = Lembrete::find($id);
+        $lembrete->delete();
+
+        return response()->json(['message' => 'Lembrete deletado com sucesso'], 200);
     }
 }
