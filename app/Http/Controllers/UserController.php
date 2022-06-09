@@ -57,6 +57,8 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
 
+        $user->saveOrFail();
+
         return response()->json(['message' => 'informações atualizadas cp, sucesso'], 200);
     }
 
