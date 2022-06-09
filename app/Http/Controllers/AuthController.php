@@ -48,6 +48,11 @@ class AuthController extends Controller
         ], 201);
     }
 
+    public function editUser(Request $request, int $id)
+    {
+
+    }
+
 
     public function login()
     {

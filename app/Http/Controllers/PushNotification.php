@@ -19,34 +19,47 @@ class PushNotification extends Controller
 //        return response()->json(['Token successfully stored.']);
 //    }
 
-    public static function sendWebNotification($dados)
+    public static function sendPushNotification($dados)
     {
         $url = 'https://fcm.googleapis.com/fcm/send';
         $link = '';
-        $serverKey = 'AAAABpoJZdI:APA91bHb0W4JQ3eQX5OklXpITZF0M_QGRF5IgW5ZT8ilYqpVvgLtulwuRVFnG2tSQ6WZXqKPOACrDY2EVpbFkSi_vC8jH-uoMzC8O5tfHDopPyV7T0RF9M6xcKK4pxziqWtPt-NX_9Mw';
-        $data = array(
-            "registration_ids" => array($dados['device_key']),
-            "notification" => [
-                "title" => $dados['title'],
-                "body" => $dados['body'],
-            ],
-            "priority" =>  "high",
-            "data" => [
-                "click_action"  =>  "FLUTTER_NOTIFICATION_CLICK",
-                "id"            =>  "1",
-                "status"        =>  "done",
-                "info"          =>  [
-                    "title"  => $dados['title'],
-                    "link"   => $dados['link'],
-                ]
-            ],
-            "to" => "<YOUR_FIREBASE_TOKEN>"
+        $serverKey = 'AAAA4Py--Bo:APA91bG7grnPQrmmQgIi43OVFxazj2CboUlht9sw54d66QEKiqdSkk861ghSStTvGebaCiyxxk7UgG13xlh-bgFEAKlrgHQN8H-MI3L-5fLt1M89NC1TufsfPoG98EvW2KW0oJ1A9Fmy';
+//        $data = array(
+////            "registration_ids" => array($dados['device_key']),
+//            "notification" => [
+//                "title" => $dados['title'],
+//                "body" => $dados['body'],
+//            ],
+////            "priority" =>  "high",
+//            "data" => [
+////                "click_action"  =>  "FLUTTER_NOTIFICATION_CLICK",
+////                "id"            =>  "1",
+////                "status"        =>  "done",
+////                "info"          =>  [
+////                    "title"  => $dados['title'],
+////                    "link"   => $dados['link'],
+//                ]
+//            ],
+//            "to" => $dados['device_key'],
+//
+//        );
 
+        $data = array(
+            "to" => $dados['device_key'],
+            "notification" => [
+                "body" => $dados['body'],
+                "title" => $dados['title'],
+            ],
+            "data" => [
+                "click_action" => "FLUTTER_NOTIFICATION_CLICK",
+                "link" => "/calendario",
+            ],
+//            "click_action" => "FFLUTTER_NOTIFICATION_CLICK"
         );
         $encodedData = json_encode($data);
 
         $headers = [
-            'Authorization:key=' . $serverKey,
+            'Authorization: Bearer ' . $serverKey,
             'Content-Type: application/json',
         ];
 
