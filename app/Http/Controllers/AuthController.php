@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password as RulesPassword;
 use Illuminate\Validation\ValidationException;
 use JWTAuth;
+use function Pest\Laravel\json;
 
 class AuthController extends Controller
 {
@@ -45,6 +46,11 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $token
         ], 201);
+    }
+
+    public function editUser(Request $request, int $id)
+    {
+
     }
 
 
@@ -129,12 +135,10 @@ class AuthController extends Controller
         );
 
         if ($status == Password::PASSWORD_RESET) {
-            return response([
-                'message'=> 'Password reset successfully'
-            ]);
+            return response()->json(['message'=> 'Password reset successfully'], 200);
         }
 
-        return response([
+        return response()->json([
             'message'=> __($status)
         ], 500);
 

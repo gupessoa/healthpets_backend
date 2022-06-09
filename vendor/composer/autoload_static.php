@@ -593,6 +593,7 @@ class ComposerStaticInitee435cbdebbaeed16481685f430ea229
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\NoticaApp' => __DIR__ . '/../..' . '/app/Console/Commands/NoticaApp.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AgendaController' => __DIR__ . '/../..' . '/app/Http/Controllers/AgendaController.php',
@@ -609,6 +610,7 @@ class ComposerStaticInitee435cbdebbaeed16481685f430ea229
         'App\\Http\\Controllers\\InfoController' => __DIR__ . '/../..' . '/app/Http/Controllers/InfoController.php',
         'App\\Http\\Controllers\\LocalController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalController.php',
         'App\\Http\\Controllers\\ProcedimentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcedimentoController.php',
+        'App\\Http\\Controllers\\PushNotification' => __DIR__ . '/../..' . '/app/Http/Controllers/PushNotification.php',
         'App\\Http\\Controllers\\RacaController' => __DIR__ . '/../..' . '/app/Http/Controllers/RacaController.php',
         'App\\Http\\Controllers\\SubcategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubcategoriaController.php',
         'App\\Http\\Controllers\\TemplateVacinaController' => __DIR__ . '/../..' . '/app/Http/Controllers/TemplateVacinaController.php',
@@ -634,6 +636,7 @@ class ComposerStaticInitee435cbdebbaeed16481685f430ea229
         'App\\Http\\Requests\\RacaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RacaRequest.php',
         'App\\Http\\Requests\\SubcategoriaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SubcategoriaRequest.php',
         'App\\Http\\Requests\\TemplateVacinaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TemplateVacinaRequest.php',
+        'App\\Http\\Requests\\UpdateInfoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateInfoRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Http\\Requests\\VacinaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/VacinaRequest.php',
         'App\\Mail\\VerifyEmail' => __DIR__ . '/../..' . '/app/Mail/VerifyEmail.php',
@@ -652,6 +655,7 @@ class ComposerStaticInitee435cbdebbaeed16481685f430ea229
         'App\\Models\\TemplateVacina' => __DIR__ . '/../..' . '/app/Models/TemplateVacina.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Vacina' => __DIR__ . '/../..' . '/app/Models/Vacina.php',
+        'App\\Notifications\\PetAddEmailNotification' => __DIR__ . '/../..' . '/app/Notifications/PetAddEmailNotification.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

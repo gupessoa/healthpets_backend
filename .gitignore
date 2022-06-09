@@ -23,7 +23,7 @@ yarn-error.log
 /logs
 /lscache
 /mail.healthpets.app.br
-/.well-know
+/.well-known
 
 /tests/*
 /tests

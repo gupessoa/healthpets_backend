@@ -61,7 +61,7 @@ Route::prefix('auth')->group(function(){
     Route::get('/refresh', [AuthController::class, 'refresh']);
     Route::delete('/delete', [AuthController::class, 'destroy']);
     Route::post('/forgot', [AuthController::class, 'forgotPassword']);
-    Route::get('/reset', [AuthController::class, 'reset'])->name('password.reset');
+    Route::post('/reset', [AuthController::class, 'reset'])->name('password.reset');
     Route::post('/email/verification-notification', [AuthController::class, 'sendVerificationEmail']);
     Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
 });
@@ -86,6 +86,7 @@ Route::post('/saude/', [InfoController::class, 'listarInfosSaude']);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
 //Route::get('/animal/{id}/user', [AnimalController::class, 'index']);
 Route::get('/agenda', [AgendaController::class, 'getPorAno']);
+Route::put('user', [UserController::class, 'ipdate']);
 //Protected Routes
 Route::group(['middleware' => ['jwt.auth']], function (){
     //Auth Rotes
