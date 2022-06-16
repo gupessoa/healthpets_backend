@@ -25,6 +25,7 @@ class CreateInfosTable extends Migration
             $table->string('local')->nullable();
             $table->double('valor')->nullable();
             $table->time('hora')->nullable();
+            $table->boolean('alerta')->default('false');
             $table->unsignedBigInteger('id_animal');
             $table->foreign('id_animal')->references('id')->on('animais');
             $table->timestamps();

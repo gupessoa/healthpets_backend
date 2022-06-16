@@ -41,8 +41,14 @@ class InfoController extends Controller
             'local'=>$request->local,
             'valor'=>$request->valor,
             'hora'=>$request->hora,
+            'alerta' => $request->alerta,
+
             'id_animal'=>$request->id_animal,
         ]);
+
+        if(alerta == true){
+
+        }
 
 
 
@@ -80,6 +86,7 @@ class InfoController extends Controller
         $info->local=$request->local;
         $info->valor=$request->valor;
         $info->hora=$request->hora;
+        $info->alerta = $request->alerta;
         $info->id_animal =$request->id_animal;
 
         $info->save();
@@ -97,7 +104,7 @@ class InfoController extends Controller
     {
         $info = Info::find($id);
         $info->delete();
-        return response()->json(['message' => 'informação deletada com sucesso']);
+        return response()->json(['message' => 'informação deletada com sucesso'], 200);
     }
 
     public function listarInfosSaude(Request $request)
@@ -108,5 +115,25 @@ class InfoController extends Controller
         $dados = Info::where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->where('id_subcategoria', '=', $subcategoria)->get();
 
         return response()->json($dados, 200);
+    }
+
+    public function listarInfosFood(Request $request)
+    {
+        return response()->json(['mensagem' => 'foi'],200);
+    }
+
+    public function listarInfosFun(Request $request)
+    {
+        return response()->json(['mensagem' => 'foi'],200);
+    }
+
+    public function listarInfosHigiene(Request $request)
+    {
+        return response()->json(['mensagem' => 'foi'],200);
+    }
+
+    public function listarInfosAcessorios(Request $request)
+    {
+        return response()->json(['mensagem' => 'foi'],200);
     }
 }

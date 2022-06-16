@@ -64,6 +64,7 @@ Route::prefix('auth')->group(function(){
     Route::post('/reset', [AuthController::class, 'reset'])->name('password.reset');
     Route::post('/email/verification-notification', [AuthController::class, 'sendVerificationEmail']);
     Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
+
 });
 
 Route::resource('template', TemplateVacinaController::class, ['except' => ['create','edit']]);
@@ -83,6 +84,10 @@ Route::resource('diario', DiarioController::class, ['except' => ['create','edit'
 Route::post('/diario/{id}', [DiarioController::class, 'getAllByAnimal']);
 Route::post('/info/{id}', [InfoController::class, 'getByAnimal']);
 Route::post('/saude/', [InfoController::class, 'listarInfosSaude']);
+Route::post('/comida/', [InfoController::class, 'listarInfosFood']);
+Route::post('/acessorios/', [InfoController::class, 'listarInfosAcessorios']);
+Route::post('/higiene/', [InfoController::class, 'listarInfosHigiene']);
+Route::post('/fun/', [InfoController::class, 'listarInfosFun']);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
 //Route::get('/animal/{id}/user', [AnimalController::class, 'index']);
 Route::get('/agenda', [AgendaController::class, 'getPorAno']);

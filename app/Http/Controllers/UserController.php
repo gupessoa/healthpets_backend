@@ -50,8 +50,8 @@ class UserController extends Controller
     public function update(Request $request, int $id)
     {
         $user = User::find($id);
-        $user->nome = $request->nome;
-        $user->email = $request->email;
+        $user->nome = filled($request->nome) ? $request->nome : $user->nome;
+        $user->email = filled($request->email) ?  $request->email : $user->email;
 
         if($request->filled(['password', 'password_confirmation']) && $request->password == $request->password_confirmation){
             $user->password = Hash::make($request->password);
