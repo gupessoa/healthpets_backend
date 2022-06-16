@@ -30,6 +30,8 @@ class InfoRequest extends FormRequest
             'id_subcategoria' => 'required',
             'local' => '',
             'valor' => '',
+            'hora' => '',
+            'alerta' => 'boolean',
             'id_animal' => 'required',
         ];
     }

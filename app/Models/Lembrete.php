@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Lembrete extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'titulo',
+        'data',
+        'descricao',
+        'hora',
+    ];
 }
