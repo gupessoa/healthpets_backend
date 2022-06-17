@@ -46,9 +46,9 @@ class InfoController extends Controller
             'id_animal'=>$request->id_animal,
         ]);
 
-        if(alerta == true){
-
-        }
+//        if($request->alerta == true){
+//            Lembrete
+//        }
 
 
 
@@ -119,21 +119,35 @@ class InfoController extends Controller
 
     public function listarInfosFood(Request $request)
     {
-        return response()->json(['mensagem' => 'foi'],200);
+        $categoria = 3;
+        $animal = $request->id;
+        $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
+        return response()->json($dados,200);
     }
+
+
 
     public function listarInfosFun(Request $request)
     {
-        return response()->json(['mensagem' => 'foi'],200);
+        $categoria = 5;
+        $animal = $request->id;
+        $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
+        return response()->json($dados,200);
     }
 
     public function listarInfosHigiene(Request $request)
     {
-        return response()->json(['mensagem' => 'foi'],200);
+        $categoria = 4;
+        $animal = $request->id;
+        $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
+        return response()->json($dados,200);
     }
 
     public function listarInfosAcessorios(Request $request)
     {
-        return response()->json(['mensagem' => 'foi'],200);
+        $categoria = 2;
+        $animal = $request->id;
+        $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
+        return response()->json($dados,200);
     }
 }
