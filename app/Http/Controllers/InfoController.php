@@ -6,6 +6,7 @@ use App\Http\Requests\InfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Models\Info;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InfoController extends Controller
 {
