@@ -109,10 +109,9 @@ class InfoController extends Controller
 
     public function listarInfosSaude(Request $request)
     {
-        $categoria = 6;//id saude
-        $subcategoria = $request->subcategoria;
+        $subcategoria = intval($request->id_subcategoria);
         $animal = $request->id_animal;
-        $dados = Info::where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->where('id_subcategoria', '=', $subcategoria)->get();
+        $dados = DB::table('infos')->where('id_animal', '=', $animal)->where('id_subcategoria', '=',$subcategoria)->get();
 
         return response()->json($dados, 200);
     }
