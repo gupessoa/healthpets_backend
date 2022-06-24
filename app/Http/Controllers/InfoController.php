@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Models\Info;
+use App\Models\Lembrete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,20 +39,27 @@ class InfoController extends Controller
         $info = new Info([
             'data'=>$request->data,
             'descricao'=>$request->descricao,
-            'adicionar_lembrete' => $request->adicionar_lembrete,
+//            'adicionar_lembrete' => $request->adicionar_lembrete,
             'id_categoria'=>$request->id_categoria,
             'id_subcategoria'=>$request->id_subcategoria,
             'local'=>$request->local,
             'valor'=>$request->valor,
             'hora'=>$request->hora,
             'alerta' => $request->alerta,
-
             'id_animal'=>$request->id_animal,
         ]);
 
-//        if($request->alerta == true){
-//            Lembrete
-//        }
+        if($request->alerta == true){
+            $lembrete = Lembrete([
+                'titulo' =>$request->descricao,
+                'data' =>$request->data,
+                'descricao' =>$request->descricao,
+                'hora' =>$request->hora,
+                'id_user' => auth()->id()
+            ]);
+
+            $lembrete->save();
+        }
 
 
 
