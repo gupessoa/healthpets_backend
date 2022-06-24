@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateInfoRequest;
 use App\Models\Info;
 use App\Models\Lembrete;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 
@@ -36,6 +37,11 @@ class InfoController extends Controller
      */
     public function store(InfoRequest $request)
     {
+        $horas = explode(':', explode( ' ', $request->hora)[0]);
+        $periodo = explode( ' ', $request->hora)[1];
+        $horas = \Carbon\Carbon::createFromTime( $horas[0], $horas[1], '00');
+        $horas = $periodo == 'PM' ? $horas->addHours(12)->format('H:i:s') : $horas->format('H:i:s');
+
         $info = new Info([
             'data'=>$request->data,
             'descricao'=>$request->descricao,
@@ -44,18 +50,18 @@ class InfoController extends Controller
             'id_subcategoria'=>$request->id_subcategoria,
             'local'=>$request->local,
             'valor'=>$request->valor,
-            'hora'=>$request->hora,
+            'hora'=>$horas,
             'alerta' => $request->alerta,
             'id_animal'=>$request->id_animal,
         ]);
 
         if($request->alerta == true){
-            $lembrete = Lembrete([
+            $lembrete = new Lembrete([
                 'titulo' =>$request->descricao,
                 'data' =>$request->data,
                 'descricao' =>$request->descricao,
-                'hora' =>$request->hora,
-                'id_user' => auth()->id()
+                'hora' =>$horas,
+                'id_user' => auth()->user()->id
             ]);
 
             $lembrete->save();
@@ -82,11 +88,11 @@ class InfoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateInfoRequest  $request
+     * @param  \App\Http\Requests\InfoRequest  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateInfoRequest $request, int $id)
+    public function update(InfoRequest $request, int $id)
     {
         $info = Info::find($id);
 

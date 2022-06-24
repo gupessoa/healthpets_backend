@@ -13,7 +13,7 @@ class CreateLembreteTable extends Migration
      */
     public function up()
     {
-        Schema::create('lembrete', function (Blueprint $table) {
+        Schema::create('lembretes', function (Blueprint $table) {
             $table->id();
             $table->String('titulo');
             $table->date('data');
