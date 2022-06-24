@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class LembreteController extends Controller
 {
-    //método para retornar todos de um usuario
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +15,19 @@ class LembreteController extends Controller
     public function index()
     {
         //
+    }
+
+    public function getLembreteByDay(Request $request)
+    {
+        $dia = $request->dia;
+        $mes = $request->mes;
+        $ano = $request->ano;
+
+        $data = $ano.'/'.$mes.'/'.$dia;
+
+        $dados = Lembrete::where('data', $data)->get();
+
+        return response()->json($dados, 200);
     }
 
     /**
