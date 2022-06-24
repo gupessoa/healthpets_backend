@@ -92,6 +92,7 @@ Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
 //Route::get('/animal/{id}/user', [AnimalController::class, 'index']);
 Route::get('/agenda', [AgendaController::class, 'getPorAno']);
 Route::put('/user/{id}', [UserController::class, 'update']);
+Route::post('/lembrete', [LembreteController::class, 'getLembreteByDay']);
 //Protected Routes
 Route::group(['middleware' => ['jwt.auth']], function (){
     //Auth Rotes
