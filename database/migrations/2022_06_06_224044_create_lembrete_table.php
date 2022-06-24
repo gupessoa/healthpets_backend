@@ -19,6 +19,7 @@ class CreateLembreteTable extends Migration
             $table->date('data');
             $table->string('descricao');
             $table->time('hora');
+            $table->integer('id_user');
             $table->timestamps();
         });
     }

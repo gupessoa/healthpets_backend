@@ -14,5 +14,6 @@ class Lembrete extends Model
         'data',
         'descricao',
         'hora',
+        'id_user'
     ];
 }

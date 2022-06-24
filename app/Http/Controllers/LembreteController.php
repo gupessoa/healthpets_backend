@@ -19,6 +19,7 @@ class LembreteController extends Controller
 
     public function getLembreteByDay(Request $request)
     {
+        $user = auth()->id();
         $dia = $request->dia;
         $mes = $request->mes;
         $ano = $request->ano;
