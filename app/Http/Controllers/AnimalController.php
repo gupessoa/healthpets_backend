@@ -72,45 +72,48 @@ class AnimalController extends Controller
         $animal->users()->attach(Auth::id(), ['owner' => 's']);
         $user = auth()->user();
         $template_vacina = TemplateVacina::where('id', '=', $id_especie)->get()->all();
+
         $vacinas = json_decode($template_vacina[0]['nome'])->nome;
         $frequencia = json_decode($template_vacina[0]['frequencia'])->frequencia;
         $periodo = json_decode($template_vacina[0]['periodo_frequencia'])->periodo;
 
-//        dd($vacinas, $frequencia, $periodo);
-        $table = '';
+        if($vacinas == '{#1411}' and $vacinas != null) {
 
-        for($i = 0; $i < count($vacinas); $i++){
-            $table .= ' A vacina '.$vacinas[$i].' precisa ser aplicada de '.$frequencia[$i]
-                    .' em '.$frequencia[$i].' '
-                    .$periodo[$i].'.';
+            $table = '';
+
+            for ($i = 0; $i < count($vacinas); $i++) {
+                $table .= ' A vacina ' . $vacinas[$i] . ' precisa ser aplicada de ' . $frequencia[$i]
+                    . ' em ' . $frequencia[$i] . ' '
+                    . $periodo[$i] . '.';
+            }
+
+            $info = [
+                'greeting' => 'Olá ' . $user->nome . ',',
+                'body' => 'Obrigado por cadastrar o ' . $nome . ' no HealthPets. Ficamos Felizes em poder ajudar' .
+                    'Segue uma lista das vacinas mais comuns aplicadas a seu animal: ' . $table
+                //            '<table class="demo">
+                //                <thead>
+                //                <tr>
+                //                    <th>Nome Vacina</th>
+                //                    <th>Frequência</th>
+                //                    <th>Periodo</th>
+                //                </tr>
+                //                </thead>
+                //                <tbody>
+                //                <tr>'.
+                //                 $table
+                //                .'</tr>
+                //                </tbody>
+                //            </table>
+                ,
+                'thanks' => 'Obrigado por escolher o HealthPets. Cadastre novas e as antigas vacinas do seu Pet.',
+                'actionText' => 'Cadastrar Vacinas',
+                'actionURL' => url('/home'),
+                'id' => 57
+            ];
+
+            Notification::send($user, new PetAddEmailNotification($info));
         }
-
-        $info = [
-            'greeting' => 'Olá '.$user->nome.',',
-            'body' => 'Obrigado por cadastrar o '.$nome.' no HealthPets. Ficamos Felizes em poder ajudar'.
-            'Segue uma lista das vacinas mais comuns aplicadas a seu animal: '.$table
-//            '<table class="demo">
-//                <thead>
-//                <tr>
-//                    <th>Nome Vacina</th>
-//                    <th>Frequência</th>
-//                    <th>Periodo</th>
-//                </tr>
-//                </thead>
-//                <tbody>
-//                <tr>'.
-//                 $table
-//                .'</tr>
-//                </tbody>
-//            </table>
-,
-            'thanks' => 'Obrigado por escolher o HealthPets. Cadastre novas e as antigas vacinas do seu Pet.',
-            'actionText' => 'Cadastrar Vacinas',
-            'actionURL' => url('/home'),
-            'id' => 57
-        ];
-
-        Notification::send($user, new PetAddEmailNotification($info));
 
         return response()->json([$animal], 200);
 
