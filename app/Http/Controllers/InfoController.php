@@ -135,7 +135,7 @@ class InfoController extends Controller
 
     public function listarInfosFood(Request $request)
     {
-        $categoria = 3;
+        $categoria = 2;
         $animal = $request->id;
         $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
         return response()->json($dados,200);
@@ -145,7 +145,7 @@ class InfoController extends Controller
 
     public function listarInfosFun(Request $request)
     {
-        $categoria = 5;
+        $categoria = 4;
         $animal = $request->id;
         $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
         return response()->json($dados,200);
@@ -153,7 +153,7 @@ class InfoController extends Controller
 
     public function listarInfosHigiene(Request $request)
     {
-        $categoria = 4;
+        $categoria = 3;
         $animal = $request->id;
         $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
         return response()->json($dados,200);
@@ -161,7 +161,7 @@ class InfoController extends Controller
 
     public function listarInfosAcessorios(Request $request)
     {
-        $categoria = 2;
+        $categoria = 1;
         $animal = $request->id;
         $dados = Info::orderBy('data')->where('id_animal', '=', $animal)->where('id_categoria', '=', $categoria)->get();
         return response()->json($dados,200);
