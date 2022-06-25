@@ -38,14 +38,13 @@ class InfoController extends Controller
     public function store(InfoRequest $request)
     {
         $horas = explode(':', explode( ' ', $request->hora)[0]);
-        $periodo = explode( ' ', $request->hora)[1];
+        $periodo = array_key_exists(1,explode( ' ', $request->hora)) ? explode( ' ', $request->hora)[1] : null;
         $horas = \Carbon\Carbon::createFromTime( $horas[0], $horas[1], '00');
         $horas = $periodo == 'PM' ? $horas->addHours(12)->format('H:i:s') : $horas->format('H:i:s');
 
         $info = new Info([
             'data'=>$request->data,
             'descricao'=>$request->descricao,
-//            'adicionar_lembrete' => $request->adicionar_lembrete,
             'id_categoria'=>$request->id_categoria,
             'id_subcategoria'=>$request->id_subcategoria,
             'local'=>$request->local,
@@ -111,7 +110,7 @@ class InfoController extends Controller
         $info->alerta = $request->alerta;
         $info->id_animal =$request->id_animal;
 
-        $info->save();
+        $info->update();
 
         return response()->json($info, 200);
     }
