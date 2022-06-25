@@ -94,6 +94,11 @@ class InfoController extends Controller
      */
     public function update(InfoRequest $request, int $id)
     {
+        $horas = explode(':', explode( ' ', $request->hora)[0]);
+        $periodo = array_key_exists(1,explode( ' ', $request->hora)[1]) ? explode( ' ', $request->hora)[1] : null;
+        $horas = \Carbon\Carbon::createFromTime( $horas[0], $horas[1], '00');
+        $horas = $periodo != null && $periodo == 'PM' ? $horas->addHours(12)->format('H:i:s') : $horas->format('H:i:s');
+
         $info = Info::find($id);
 
         $info->data = $request->data;
@@ -102,7 +107,7 @@ class InfoController extends Controller
         $info->id_subcategoria=$request->id_subcategoria;
         $info->local=$request->local;
         $info->valor=$request->valor;
-        $info->hora=$request->hora;
+        $info->hora=$horas;
         $info->alerta = $request->alerta;
         $info->id_animal =$request->id_animal;
 

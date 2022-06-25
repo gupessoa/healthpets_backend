@@ -18,6 +18,7 @@ class Info extends Model
         'id_subcategoria',
         'local',
         'valor',
+        'hora',
         'id_animal',
     ];
 

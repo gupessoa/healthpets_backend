@@ -89,6 +89,7 @@ Route::post('/acessorios/', [InfoController::class, 'listarInfosAcessorios']);
 Route::post('/higiene/', [InfoController::class, 'listarInfosHigiene']);
 Route::post('/fun/', [InfoController::class, 'listarInfosFun']);
 Route::get('/especie/{id}/racas', [RacaController::class, 'getRacaByEspecie']);
+Route::put('/info', [InfoController::class, 'update']);
 //Route::get('/animal/{id}/user', [AnimalController::class, 'index']);
 Route::get('/agenda', [AgendaController::class, 'getPorAno']);
 Route::put('/user/{id}', [UserController::class, 'update']);
