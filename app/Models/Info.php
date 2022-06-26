@@ -19,6 +19,7 @@ class Info extends Model
         'local',
         'valor',
         'hora',
+        'alerta',
         'id_animal',
     ];
 
