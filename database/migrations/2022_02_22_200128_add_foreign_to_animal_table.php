@@ -14,8 +14,8 @@ class AddForeignToAnimalTable extends Migration
     public function up()
     {
         Schema::table('animais', function (Blueprint $table) {
-            $table->foreign('id_especie')->references('id')->on('especies');
-            $table->foreign('id_raca')->references('id')->on('racas');
+            $table->foreign('id_especie')->references('id')->on('especies')->onDelete('cascade');
+            $table->foreign('id_raca')->references('id')->on('racas')->onDelete('cascade');
         });
     }
 

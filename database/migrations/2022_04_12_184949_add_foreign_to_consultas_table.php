@@ -14,7 +14,7 @@ class AddForeignToConsultasTable extends Migration
     public function up()
     {
         Schema::table('consultas', function (Blueprint $table) {
-            $table->foreign('id_local')->references('id')->on('locais');
+            $table->foreign('id_local')->references('id')->on('locais')->onDelete('cascade');
         });
     }
 

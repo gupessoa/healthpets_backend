@@ -17,7 +17,7 @@ class CreateTokenDeviceTable extends Migration
             $table->id();
             $table->string('token_device');
             $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
