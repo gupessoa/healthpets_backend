@@ -73,9 +73,9 @@ class AnimalController extends Controller
         $user = auth()->user();
         $template_vacina = TemplateVacina::where('id', '=', $id_especie)->get()->all();
 
-        $vacinas = json_decode($template_vacina[0]['nome'])->nome;
-        $frequencia = json_decode($template_vacina[0]['frequencia'])->frequencia;
-        $periodo = json_decode($template_vacina[0]['periodo_frequencia'])->periodo;
+        $vacinas = json_decode($template_vacina[0]['nome']);
+        $frequencia = json_decode($template_vacina[0]['frequencia']);
+        $periodo = json_decode($template_vacina[0]['periodo_frequencia']);
 
         if($vacinas == '{#1411}' and $vacinas != null) {
 
