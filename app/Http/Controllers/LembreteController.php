@@ -26,7 +26,7 @@ class LembreteController extends Controller
 
         $data = $ano.'/'.$mes.'/'.$dia;
 
-        $dados = Lembrete::where('data', $data)->get();
+        $dados = Lembrete::where('data', $data)->where('id_user', $user)->get();
 
         return response()->json($dados, 200);
     }
