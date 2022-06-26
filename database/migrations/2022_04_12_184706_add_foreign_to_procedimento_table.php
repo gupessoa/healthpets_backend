@@ -14,7 +14,7 @@ class AddForeignToProcedimentoTable extends Migration
     public function up()
     {
         Schema::table('procedimentos', function (Blueprint $table) {
-            $table->foreign('id_local')->references('id')->on('locais');
+            $table->foreign('id_local')->references('id')->on('locais')->onDelete('cascade');
         });
     }
 

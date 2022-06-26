@@ -94,7 +94,7 @@ class InfoController extends Controller
     public function update(InfoRequest $request, int $id)
     {
         $horas = explode(':', explode( ' ', $request->hora)[0]);
-        $periodo = array_key_exists(1,explode( ' ', $request->hora)[1]) ? explode( ' ', $request->hora)[1] : null;
+        $periodo = array_key_exists(1,explode( ' ', $request->hora)) ? explode( ' ', $request->hora)[1] : null;
         $horas = \Carbon\Carbon::createFromTime( $horas[0], $horas[1], '00');
         $horas = $periodo != null && $periodo == 'PM' ? $horas->addHours(12)->format('H:i:s') : $horas->format('H:i:s');
 
