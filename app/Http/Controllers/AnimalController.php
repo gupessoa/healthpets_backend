@@ -145,12 +145,15 @@ class AnimalController extends Controller
 
         $animal->nome = $request->nome;
         $animal->data_nascimento = $request->data_nascimento;
+        dd(explode('/', $request->file('foto')));
 
         if($request->hasFile('foto')){
             $foto =  explode('/', $request->file('foto')->store('pets', 'public'))[1];
             if(Storage::exists($animal->foto)){
                 Storage::delete($animal->foto);
             }
+        }else{
+            $foto = $animal->foto;
         }
 
         $animal->foto = $foto;
